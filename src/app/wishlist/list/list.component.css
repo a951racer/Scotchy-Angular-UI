@@ -1,0 +1,20 @@
+.openColumn {
+  max-width: 10px;
+}
+
+.dateColumn {
+  width: 90px;
+}
+
+.descriptionColumn {
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.nameColumn {
+  max-width: 200px;
+}
+
+.editColumn {
+  max-width: 43px;
+}

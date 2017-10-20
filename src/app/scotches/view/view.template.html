@@ -1,0 +1,127 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+<div *ngIf="scotch">
+  <!-- Header -->
+  <div [ngClass]="'scotchDetailHeader'">
+      <!-- Rating -->
+      <div class="scotch-rating">
+        <app-rating-star [rating]="scotch.rating ? scotch.rating : 0"></app-rating-star>
+      </div>
+
+      <!-- In Stock status -->
+      <div class="in-stock">
+        <div *ngIf="scotch.inStock">
+          <span>In stock: </span><span class="check-mark"><i class="fa fa-check"></i></span>
+        </div>
+        <div *ngIf="!scotch.inStock">
+          <span>In stock: </span><span class="red-x"><i class="fa fa-times"></i></span>
+        </div>
+      </div>
+  </div>
+  
+  <div [ngClass]="'spacer'"></div>
+  
+  <div [ngClass]="'editIcon'">
+    <i class="fa fa-pencil" (click)="editScotch(scotch)"></i>
+  </div>
+  
+  <!-- Details -->
+  <div [ngClass]="'scotchDetails'">
+    <div [ngClass]="'row'">
+      <div [ngClass]="'scotch-detail-label'">Style:</div>
+      <div [ngClass]="'scotch-detail-data'">{{scotch.style}}</div>
+    </div>
+    <div [ngClass]="'row'">
+      <div [ngClass]="'scotch-detail-label'">Region:</div>
+      <div [ngClass]="'scotch-detail-data'">{{scotch.region}}</div>
+    </div>
+    <div [ngClass]="'spacer'"></div>
+    <div [ngClass]="'row'">
+      <div [ngClass]="'scotch-detail-label'">Comment:</div>
+    </div>
+    <div [ngClass]="'scotch-detail-comment'" [innerHTML]="scotch.comment"></div>
+  </div>
+
+  <!-- NOTES  -->
+  <div [ngClass]="'scotchDetailNotes'">
+      <div [ngClass]="'section-label'">Notes</div>
+      <div>
+          <button [ngClass]="'button'" (click)="addNote()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+  <div>
+	<table>
+	  <tr>
+	    <th [ngClass]="'dateColumn'">Date</th> 
+	    <th>Note</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+	  </tr>
+	  <tr *ngFor="let note of notes">
+        <td [ngClass]="'dateColumn'">{{note.dateAdded | date: 'MM/dd/yyyy'}}</td>
+		<td>{{note.note}}</td>
+		<td [ngClass]="'editButtomColumn'">
+			<button [ngClass]="'button'" (click)="editNote(note)"><i class="fa fa-pencil"></i> Edit</button>
+			<button [ngClass]="'button'" (click)="confirmDeleteNote(note)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+</div>
+
+  </div>
+
+  <!-- Tastings  -->
+  <div [ngClass]="'scotchDetailTastings'">
+      <div [ngClass]="'section-label'">Tastings</div>
+      <div>
+          <button [ngClass]="'button'" (click)="addTasting()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+  </div>
+	<table>
+	  <tr>
+	    <th [ngClass]="'dateColumn'">Date</th> 
+	    <th>Location</th>
+	    <th [ngClass]="'ratingColumn'">Rating</th>
+        <th>Comment</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+	  </tr>
+	  <tr *ngFor="let tasting of tastings">
+        <td [ngClass]="'dateColumn'">{{tasting.dateAdded | date: 'MM/dd/yyyy'}}</td>
+		<td>{{tasting.location}}</td>
+        <td [ngClass]="'ratingColumn'">
+          <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
+        </td>
+		<td>{{tasting.comment}}</td>
+		<td [ngClass]="'editButtomColumn'">
+			<button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
+			<button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+
+  <!-- Wishlists  -->
+  <div [ngClass]="'scotchDetailWishlists'">
+      <div [ngClass]="'section-label'">Wishlists</div>
+      <div>
+          <button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+  </div>
+	<table>
+	  <tr>
+	    <th>Wishlist</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+	  </tr>
+	  <tr *ngFor="let wishlist of wishlists">
+        <td><a (click)="goToWishlist(wishlist)">{{wishlist}}</a></td>
+		<td [ngClass]="'editButtomColumn'">
+			<button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+
+</div>
+<app-footer></app-footer>
+
+
+<app-edit-dialog></app-edit-dialog>
+<app-confirm-dialog></app-confirm-dialog>

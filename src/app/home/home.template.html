@@ -1,0 +1,13 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+<div id="logo" [ngClass]="'logo'">
+    <img src="/assets/img/logo.png" height=200px width=200px alt="Logo"><br>
+    <span class="caption">Angus McScotchy, III</span>
+</div>
+
+<div *ngIf="user">
+  <app-navbar></app-navbar>
+</div>
+<div *ngIf="!user">
+  <app-login-navbar></app-login-navbar>
+</div>
+<app-footer></app-footer>

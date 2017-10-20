@@ -1,0 +1,43 @@
+<div>
+    <div><label for="distillerName">Distiller Name</label></div>
+    <div><input type="text" id="distillerName" [(ngModel)]="scotch.distillerName"></div>
+</div>
+<div>
+    <div><label for="flavor">Expression</label></div>
+    <div><input type="text" id="flavor" [(ngModel)]="scotch.flavor"></div>
+</div>
+<div>
+    <div><label for="age">Age</label></div>
+    <div><input type="number" id="age" [(ngModel)]="scotch.age"></div>
+</div>
+<div>
+    <div><label for="style">Style</label></div>
+    <div>
+      <select [(ngModel)]="scotch.style" id="style">
+        <option value="Single Malt">Single Malt</option>
+        <option value="Blended">Blended</option>
+        <option value="Single Grain">Single Grain</option>
+      </select>
+    </div>
+</div>
+<div>
+    <div><label for="region">Region</label></div>
+    <div>
+      <select [(ngModel)]="scotch.region" id="region">
+        <option value="Speyside">Speyside</option>
+        <option value="Highland">Highland</option>
+        <option value="Lowland">Lowland</option>
+        <option value="Islay">Islay</option>
+        <option value="Island">Island</option>
+        <option value="Campbeltown">Campbeltown</option>
+      </select>
+</div>
+<div>
+    <div><label for="inStock">In Stock </label>
+      <input type="checkbox" id="inStock" [(ngModel)]="scotch.inStock">
+    </div>
+</div>
+<div>
+    <div><label for="comment">Comment</label></div>
+  <div><textarea id="comment" [(ngModel)]="scotch.comment" rows="7" cols="45"></textarea></div>
+</div>

@@ -1,0 +1,21 @@
+<div class="page-header" clickOutside (clickOutside)="close()">
+	<div *ngIf="showMenu" style="float: left">
+		<div class="dropdown">
+			<i (click)="menuClick()" class="dropbtn fa fa-bars"></i>
+			<div id="myDropdown" class="dropdown-content">
+				<a (click)="onSelect('home')"><i class="fa fa-home"></i> Home</a>
+				<a (click)="onSelect('cabinet')"><i class="fa fa-folder-open-o"></i> Cabinet</a>
+				<a (click)="onSelect('tastings')"><i class="fa fa-glass"></i> Tastings</a>
+				<a (click)="onSelect('wishlists')"><i class="fa fa-file-text-o"></i> Wish Lists</a>
+				<hr>
+				<a (click)="onSelect('settings')"><i class="fa fa-sign-out"></i> Settings</a>
+				<hr>
+				<a (click)="onSelect('signout')"><i class="fa fa-sign-out"></i> Sign Out</a>
+			</div>
+		</div>
+	</div>
+    <div>
+	    <span class="page-title">{{title}}</span>
+	    <span class="page-subtitle">{{subtitle}}</span>
+	</div>
+</div>

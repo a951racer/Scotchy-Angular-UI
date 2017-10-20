@@ -1,0 +1,6 @@
+<div>
+    <div><label for="dramName">Select Scotch</label></div>
+    <select id="id" [(ngModel)]="scotch._id" name="id">  
+        <option *ngFor="let sc of scotches" [value]="sc._id">{{sc.dramName}}</option>
+    </select>
+</div>

@@ -1,0 +1,131 @@
+/*** Page header  ****************/
+
+.scotchDetailHeader {
+
+}
+
+.scotch-rating
+{
+    font-family: fantasy;
+    font-size: 225%;
+    color: darkorange;
+    float: left;
+    width: 50%;
+}
+
+
+.in-stock
+{
+    font-size: 150%;
+    text-align: right;
+    float: right;
+    width: 50%;
+}
+
+.check-mark
+{
+    color: darkgreen;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+.red-x
+{
+    color: red;
+    font-size: 150%;
+    font-weight: bold;
+}
+
+/*** Details section **************/
+
+.scotchDetails {
+
+}
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.scotch-detail-label {
+  float: left;
+  padding: 5px 10px;
+  font-size: 125%;
+  font-weight: bold;
+  color: darkolivegreen;
+  max-width: 70px;
+  /* width: 10% */
+}
+
+.scotch-detail-data {
+  float: left;
+  padding: 5px 10px 5px 15px;
+  font-size: 125%;
+  font-weight: bold;
+  color: black;
+  /* max-width: 175px; */
+  /* width: 90% */
+}
+
+.scotch-detail-comment
+{
+    background-color: #88ad8d;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    margin: 0 0 10px 5px;
+    box-shadow: 4px 4px 10px grey;
+}
+
+
+/***  Other Sections ********************/
+
+.section-label
+{
+    font-size: 125%;
+    color: darkgreen;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 30px 0 10px 0;
+    
+}
+
+.dateColumn {
+  width: 90px;
+}
+
+.editButtomColumn {
+  width: 150px;
+  text-align: center;
+}
+
+/***  Notes Section ********************/
+
+.scotchDetailNotes {
+  margin-top: 20px;
+}
+
+.ratingColumn {
+  width: 75px;
+}
+
+
+
+
+/** Edit Dialog **/
+
+
+/*** Utilities ****************************/
+
+.spacer
+{
+  padding-top: 20px;
+}
+
+
+.editIcon {
+  font-size: 150%;
+  color: darkred;
+  margin: 30px 5px 8px 5px;
+}

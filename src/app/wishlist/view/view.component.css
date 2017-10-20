@@ -1,0 +1,79 @@
+/*** Page header  ****************/
+
+.wishlistDetailHeader {
+
+}
+
+/*** Details section **************/
+
+.wishlistDetails {
+
+}
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.wishlist-detail-label {
+  float: left;
+  padding: 5px 10px;
+  font-size: 125%;
+  font-weight: bold;
+  color: darkolivegreen;
+  max-width: 100px;
+  /* width: 10% */
+}
+
+.wishlist-detail-data {
+  float: left;
+  padding: 5px 10px 5px 15px;
+  font-size: 125%;
+  font-weight: bold;
+  color: black;
+  /* max-width: 175px; */
+  /* width: 90% */
+}
+
+.wishlist-detail-comment
+{
+    background-color: #88ad8d;
+    border-radius: 10px;
+    padding: 10px;
+    color: black;
+    margin: 0 0 10px 5px;
+    box-shadow: 4px 4px 10px grey;
+}
+
+
+/***  Other Sections ********************/
+
+.section-label
+{
+    font-size: 125%;
+    color: darkgreen;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 30px 0 10px 0;
+    
+}
+
+.editButtomColumn {
+  width: 150px;
+  text-align: center;
+}
+
+/*** Utilities ****************************/
+
+.spacer
+{
+  padding-top: 20px;
+}
+
+
+.editIcon {
+  font-size: 150%;
+  color: darkred;
+  margin: 30px 5px 8px 5px;
+}

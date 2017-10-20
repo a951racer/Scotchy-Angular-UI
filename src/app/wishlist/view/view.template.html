@@ -1,0 +1,46 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+<div *ngIf="wishlist">
+  <div [ngClass]="'editIcon'">
+    <i class="fa fa-pencil" (click)="editWishlist(wishlist)"></i>
+  </div>
+  
+  <!-- Details -->
+  <div [ngClass]="'wishlistDetails'">
+    <div [ngClass]="'row'">
+      <div [ngClass]="'wishlist-detail-label'">Name:</div>
+      <div [ngClass]="'wishlist-detail-data'">{{wishlist.wishListName}}</div>
+    </div>
+    <div [ngClass]="'row'">
+      <div [ngClass]="'wishlist-detail-label'">Description:</div>
+      <div [ngClass]="'wishlist-detail-data'">{{wishlist.description}}</div>
+    </div>
+
+    <!-- Scotches  -->
+    <div [ngClass]="'wishlistDetailNotes'">
+      <div [ngClass]="'section-label'">Scotches</div>
+      <div>
+        <button [ngClass]="'button'" (click)="addScotch()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+      <div>
+        <table>
+          <tr>
+            <th>Scotch</th>
+            <th [ngClass]="'editButtomColumn'"></th>
+          </tr>
+          <tr *ngFor="let scotch of scotches">
+            <td><a [routerLink]="['/scotches', scotch._id]">{{scotch.dramName}}</a></td>
+            <td [ngClass]="'editButtomColumn'">
+              <button [ngClass]="'button'" (click)="confirmDeleteScotch(scotch)"><i class="fa fa-times"></i> Delete</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>
+
+
+<app-edit-dialog></app-edit-dialog>
+<app-confirm-dialog></app-confirm-dialog>

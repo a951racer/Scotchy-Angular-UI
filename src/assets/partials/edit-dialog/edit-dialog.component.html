@@ -1,0 +1,31 @@
+<!-- Edit Dialog -->
+
+<div id="editDialog" [ngClass]="'edit-dialog'">
+  <div [ngClass]="'edit-dialog-content'">
+    <div [ngClass]="'dialog-header'">
+      <span>{{dialogTitle}}</span>
+      <button [ngClass]="'close'" (click)="close(false)">&times;</button>
+    </div> <!-- end header -->
+
+    <div [ngClass]="'edit-dialog-body'" *ngIf="editedObject">
+      <app-scotch-edit-form [scotch]="editedObject" *ngIf="dialogType==='scotch'"></app-scotch-edit-form>
+      <app-note-edit-form [note]="editedObject" *ngIf="dialogType==='note'"></app-note-edit-form>
+      <app-tasting-edit-form [tasting]="editedObject" *ngIf="dialogType==='tasting'"></app-tasting-edit-form>
+      <app-wishlist-edit-form [wishlist]="editedObject" *ngIf="dialogType==='wishlist'"></app-wishlist-edit-form>
+      <app-wishlist-select-form [wishlist]="editedObject" *ngIf="dialogType==='wishlist-select'"></app-wishlist-select-form>
+      <app-scotch-select-form [scotch]="editedObject" *ngIf="dialogType==='scotch-select'"></app-scotch-select-form>
+      <!-- <app-signin-form [credentials]="editedObject" *ngIf="dialogType==='signin'"></app-signin-form> -->
+    </div> <!-- end body -->
+
+
+    <div class="edit-dialog-footer">
+      <hr>
+      <div>
+        <button (click)="close(false)" label="Cancel" [ngClass]="'button'"><i class="fa fa-times"></i> Cancel</button>
+        <button (click)="close(true)" label="Save" [ngClass]="'button'"><i class="fa fa-check"></i> Save</button>
+      </div> <!-- end button bar -->
+    </div>  <!-- end footer -->
+  </div> <!-- end content -->
+</div>
+
+

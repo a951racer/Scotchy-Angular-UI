@@ -1,0 +1,39 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+<div style="margin: 10px">
+	<button [ngClass]="'button'" (click)="addScotch()"><i class="fa fa-plus"></i> New</button>
+</div>
+<div>
+	<table>
+	  <tr>
+	    <th class="openColumn"></th>
+	    <th>Distiller</th> 
+	    <th>Expression</th>
+	    <th class="ageColumn">Age</th>
+	    <th class="styleColumn">Style</th>
+	    <th class="regionColumn">Region</th>
+	    <th class="instockColumn">In Stock</th>
+	    <th class="editColumn"></th>
+	  </tr>
+	  <tr *ngFor="let scotch of scotches">
+		<td class="openColumn"><button [ngClass]="'button'" (click)="showDetails(scotch)"><i class="fa fa-folder-open-o"></i></button></td>
+        <td>{{scotch.distillerName}}</td>
+		<td>{{scotch.flavor}}</td>
+		<td class="ageColumn">{{scotch.age}}</td>
+		<td class="styleColumn">{{scotch.style}}</td>
+		<td class="regionColumn">{{scotch.region}}</td>
+		<td class="instockColumn">
+          <div *ngIf="scotch.inStock">
+            <span class="check-mark"><i class="fa fa-check"></i></span>
+          </div>
+        </td>
+		<td class="editColumn">
+			<button [ngClass]="'button'" (click)="editScotch(scotch)"><i class="fa fa-pencil"></i> Edit</button>
+			<button [ngClass]="'button'" (click)="confirmDeleteScotch(scotch)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+</div>
+<app-footer></app-footer>
+
+<app-edit-dialog></app-edit-dialog>
+<app-confirm-dialog></app-confirm-dialog>
