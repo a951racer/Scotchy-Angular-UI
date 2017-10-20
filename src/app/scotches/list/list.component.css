@@ -2,6 +2,14 @@
   max-width: 10px;
 }
 
+.distillerColumn {
+  max-width: 80px;
+}
+
+.expressionColumn {
+  max-width: 80px;
+}
+
 .ageColumn {
   max-width: 12px;
   text-align: right;
@@ -15,13 +23,18 @@
   max-width: 25px;
 }
 
+.ratingColumn {
+  min-width: 40px;
+  max-width: 50px;
+}
+
 .instockColumn {
   max-width: 20px;
   text-align: center;
 }
 
 .editColumn {
-  max-width: 43px;
+  min-width: 43px;
 }
 
 .check-mark
