@@ -13,7 +13,7 @@
 	  </tr>
 	  <tr *ngFor="let wishlist of wishlists">
 		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showDetails(wishlist)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'dateColumn'">{{wishlist.dateAdded | date: 'MM/dd/yyyy'}}</td>
+        <td [ngClass]="'dateColumn'">{{wishlist.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
         <td [ngClass]="'nameColumn'">{{wishlist.wishListName}}</td>
         <td [ngClass]="'descriptionColumn'">{{wishlist.description}}</td>
 		<td [ngClass]="'editColumn'">
