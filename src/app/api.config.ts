@@ -4,5 +4,7 @@ export const apiConfig = {
   signupURL: '/auth/signup',
   signoutURL: '/auth/signout',
   scotchesURL: '/scotches',
-  wishlistsURL: '/wishlists'
+  wishlistsURL: '/wishlists',
+  stylesURL: '/styles',
+  regionsURL: '/regions'
 };

@@ -1,0 +1,53 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+  <!-- Styles  -->
+  <div [ngClass]="'styles'">
+      <div [ngClass]="'section-label'">Scotch Styles</div>
+      <div>
+          <button [ngClass]="'button'" (click)="addStyle()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+  <div>
+	<table>
+	  <tr>
+	    <th>Style</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+	  </tr>
+	  <tr *ngFor="let style of styles">
+		<td>{{style.name}}</td>
+		<td [ngClass]="'editButtomColumn'">
+			<button [ngClass]="'button'" (click)="editStyle(style)"><i class="fa fa-pencil"></i> Edit</button>
+			<button [ngClass]="'button'" (click)="confirmDeleteStyle(style)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+</div>
+
+  </div>
+
+  <!-- Regions  -->
+  <div [ngClass]="'regions'">
+      <div [ngClass]="'section-label'">Scotch Regions</div>
+      <div>
+          <button [ngClass]="'button'" (click)="addRegion()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+  </div>
+	<table>
+	  <tr>
+	    <th>Region</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+	  </tr>
+	  <tr *ngFor="let region of regions">
+		<td>{{region.name}}</td>
+		<td [ngClass]="'editButtomColumn'">
+			<button [ngClass]="'button'" (click)="editRegion(region)"><i class="fa fa-pencil"></i> Edit</button>
+			<button [ngClass]="'button'" (click)="confirmDeleteRegion(region)"><i class="fa fa-times"></i> Delete</button>
+		</td>
+	  </tr>
+	</table>
+
+<app-footer></app-footer>
+
+
+<app-edit-dialog></app-edit-dialog>
+<app-confirm-dialog></app-confirm-dialog>
