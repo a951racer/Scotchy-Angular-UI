@@ -11,7 +11,7 @@
 }
 
 .ageColumn {
-  max-width: 12px;
+  max-width: 15px;
   text-align: right;
 }
 
@@ -29,7 +29,7 @@
 }
 
 .instockColumn {
-  max-width: 20px;
+  max-width: 30px;
   text-align: center;
 }
 
@@ -49,4 +49,12 @@
     color: #c74949;
     font-size: 110%;
     font-weight: bold;
+}
+
+.filterRow {
+  background-color: darkolivegreen;
+}
+
+.hiddenData {
+  display: none;
 }

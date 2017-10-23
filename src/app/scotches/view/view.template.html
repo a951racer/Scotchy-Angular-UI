@@ -84,13 +84,21 @@
         <th>Comment</th>
         <th [ngClass]="'editButtomColumn'"></th>
 	  </tr>
-	  <tr *ngFor="let tasting of tastings">
+	  <tr *ngFor="let tasting of personalTastings">
         <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
 		<td>{{tasting.location}}</td>
         <td [ngClass]="'ratingColumn'">
           <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
         </td>
-		<td>{{tasting.comment}}</td>
+		<td>
+          <span [ngClass]="'tastingPopup'">{{tasting.comment}}
+          <span [ngClass]="'tastingPopupContents'">
+            <span><strong>Nose:<br></strong>{{tasting.nose}}</span><br><br>
+            <span><strong>Palate:<br></strong>{{tasting.palate}}</span><br><br>
+            <span><strong>Finish:<br></strong>{{tasting.finish}}</span><br><br>
+          </span>
+            </span>
+        </td>
 		<td [ngClass]="'editButtomColumn'">
 			<button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
 			<button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>

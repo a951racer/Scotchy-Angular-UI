@@ -24,6 +24,8 @@ export class ViewComponent implements OnInit, OnDestroy {
   scotch: any;
   notes: any[];
   tastings: any[];
+  personalTastings: any[];
+  thirdPartyTastings: any[];
   wishlists: any[];
 
   paramsObserver: any;
@@ -96,6 +98,8 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.title = scotch.dramName;
         this.notes = scotch.notes;
         this.tastings = scotch.tastings;
+        this.personalTastings = this.tastings.filter(tasting => !tasting.thirdParty);
+        this.thirdPartyTastings = this.tastings.filter(tasting => tasting.thirdParty);
         this.wishlists = scotch.wishLists;
         this.allowEdit = (this.user && this.user._id === this.scotch.creator._id);
       },
@@ -167,6 +171,8 @@ export class ViewComponent implements OnInit, OnDestroy {
   addTasting() {
     this.newTasting = true;
     this.editedTasting = new Object();
+    this.editedTasting.thirdParty = false;
+    // this.editedTasting.source = 'Self';
     this._editDialogService.launchDialog({type: 'tasting',
                                             title: 'Add Tasting',
                                             editedObject: this.editedTasting,
