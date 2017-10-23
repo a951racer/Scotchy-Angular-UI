@@ -7,7 +7,7 @@
 	<table id="scotchTable">
 	  <tr>
 	    <th [ngClass]="'openColumn'"></th>
-	    <th [ngClass]="'distillerColumn'" (click)="sortTable(1)">Distiller <i class="fa fa-sort"></i></th> 
+	    <th [ngClass]="'distillerColumn'" (click)="sortTable(11)">Distiller <i class="fa fa-sort"></i></th> 
 	    <th [ngClass]="'expressionColumn'">Expression</th>
 	    <th [ngClass]="'ageColumn'" (click)="sortTableNumeric(3)">Age <i class="fa fa-sort"></i></th>
 	    <th [ngClass]="'styleColumn'" (click)="sortTable(4)">Style <i class="fa fa-sort"></i></th>
@@ -69,6 +69,7 @@
 		</td>
         <td [ngClass]="'hiddenData'">{{scotch.rating}}</td>
         <td [ngClass]="'hiddenData'">{{scotch.inStock ? 1 : 0}}</td>
+        <td [ngClass]="'hiddenData'">{{scotch.dramName}}</td>
 	  </tr>
 	</table>
 </div>
