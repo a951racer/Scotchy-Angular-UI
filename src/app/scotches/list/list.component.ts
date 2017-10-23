@@ -26,6 +26,7 @@ export class ListComponent implements OnInit, OnChanges {
   newScotch: boolean;
   dialogTitle: string;
   confirmDialogTitle: string;
+  showFilters = false;
 
   constructor(private _scotchesService: ScotchesService,
               private _router: Router,
@@ -128,4 +129,159 @@ export class ListComponent implements OnInit, OnChanges {
   showDetails(scotch) {
     this._router.navigate(['/scotches', scotch._id]);
   }
-}
+
+/*** Table Sorting *****************/
+
+  sortTable(n) {
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0, startRow;
+    table = document.getElementById('scotchTable');
+    switching = true;
+    dir = 'asc';
+    while (switching) {
+      switching = false;
+      rows = table.getElementsByTagName('TR');
+      if (this.showFilters) {
+        startRow = 2;
+      } else {
+        startRow = 1;
+      }
+      for (i = startRow; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName('TD')[n];
+        y = rows[i + 1].getElementsByTagName('TD')[n];
+        if (dir === 'asc') {
+          if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir === 'desc') {
+          if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount++;
+      } else {
+        if (switchcount === 0 && dir === 'asc') {
+          dir = 'desc';
+          switching = true;
+        }
+      }
+    }
+  }
+
+  sortTableNumeric(n) {
+    let table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0, startRow;
+    table = document.getElementById('scotchTable');
+    switching = true;
+    dir = 'asc';
+    while (switching) {
+      switching = false;
+      rows = table.getElementsByTagName('TR');
+      if (this.showFilters) {
+        startRow = 2;
+      } else {
+        startRow = 1;
+      }
+      for (i = startRow; i < (rows.length - 1); i++) {
+        shouldSwitch = false;
+        x = rows[i].getElementsByTagName('TD')[n];
+        y = rows[i + 1].getElementsByTagName('TD')[n];
+        if (dir === 'asc') {
+          if (Number(x.innerHTML) > Number(y.innerHTML)) {
+            shouldSwitch = true;
+            break;
+          }
+        } else if (dir === 'desc') {
+          if (Number(x.innerHTML) < Number(y.innerHTML)) {
+            shouldSwitch = true;
+            break;
+          }
+        }
+      }
+      if (shouldSwitch) {
+        rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+        switching = true;
+        switchcount++;
+      } else {
+        if (switchcount === 0 && dir === 'asc') {
+          dir = 'desc';
+          switching = true;
+        }
+      }
+    }
+  }
+
+/*** Table Filtering *********************************/
+  toggleFilterRow() {
+    this.showFilters = !this.showFilters;
+  }
+
+  filterTable(c, id) {
+    let input, filter, table, tr, td, i;
+    input = document.getElementById(id);
+    filter = input.value.toUpperCase();
+    table = document.getElementById('scotchTable');
+    tr = table.getElementsByTagName('tr');
+    for (i = 2; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[c];
+      if (td) {
+        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
+  }
+
+  filterByRating(c, id) {
+    console.log('filter by rating');
+    let input, filter, table, tr, td, i, children, rating;
+    input = document.getElementById(id);
+    filter = Number(input.value);
+    console.log(filter);
+    table = document.getElementById('scotchTable');
+    tr = table.getElementsByTagName('tr');
+    for (i = 2; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[c];
+      if (td) {
+        rating = Number(tr[i].getElementsByTagName('td')[9].innerHTML);
+        if (rating >= filter) {
+          tr[i].style.display = '';
+        } else {
+          tr[i].style.display = 'none';
+        }
+      }
+    }
+  }
+
+
+  filterInStock(c, id) {
+    let input, filter, table, tr, td, i, inStock;
+    input = document.getElementById(id);
+    filter = input.checked;
+    table = document.getElementById('scotchTable');
+    tr = table.getElementsByTagName('tr');
+    for (i = 2; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName('td')[c];
+      inStock = Boolean(Number(tr[i].getElementsByTagName('td')[10].innerHTML));
+      if (td) {
+        if (filter) {
+          if (inStock) {
+            tr[i].style.display = '';
+          } else {
+            tr[i].style.display = 'none';
+          }
+        } else {
+          tr[i].style.display = '';
+        }
+      }
+    }
+  }
+
+} // end class definition

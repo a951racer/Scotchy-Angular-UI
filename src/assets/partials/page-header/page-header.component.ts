@@ -13,7 +13,8 @@ export class PageHeaderComponent {
   @Input() title: string;
   @Input() subtitle: string;
   showMenu = (this.router.url.substr(1, 8) === 'scotches'
-             || this.router.url.substr(1, 9) === 'wishlists');
+             || this.router.url.substr(1, 9) === 'wishlists'
+             || this.router.url.substr(1, 7) === 'lookups');
 
 
 
@@ -34,6 +35,8 @@ export class PageHeaderComponent {
       case 'wishlists': this.router.navigate(['wishlists']);
         break;
       case 'tastings': this.router.navigate(['tastings']);
+        break;
+      case 'settings': this.router.navigate(['lookups']);
         break;
       case 'signout': this.router.navigate(['authentication/signout']);
         break;

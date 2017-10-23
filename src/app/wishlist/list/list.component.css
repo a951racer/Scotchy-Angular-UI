@@ -1,20 +1,23 @@
 .openColumn {
-  max-width: 10px;
+  width: 10px;
 }
 
 .dateColumn {
   width: 90px;
 }
 
+.nameColumn {
+  max-width: 100px;
+}
+
 .descriptionColumn {
   overflow: hidden;
-  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 250px;
 }
 
-.nameColumn {
-  max-width: 200px;
-}
 
 .editColumn {
-  max-width: 43px;
+  /* max-width: 43px; */
 }

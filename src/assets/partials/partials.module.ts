@@ -22,6 +22,9 @@ import { WishlistSelectFormComponent } from '../../app/wishlist/wishlist-select-
 import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form-component';
 // import { SigninComponent } from '../../app/authentication/signin/signin.component';
 // import { SignupComponent } from '../../app/authentication/signup/signup.component';
+import { StyleEditFormComponent } from '../../app/lookup/edit/style-edit.form.component';
+import { RegionEditFormComponent } from '../../app/lookup/edit/region-edit.form.component';
+import { UtcDatePipe } from '../../helpers/utcDate.pipe';
 
 @NgModule({
   imports: [
@@ -46,6 +49,9 @@ import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
     ScotchSelectFormComponent,
+    StyleEditFormComponent,
+    RegionEditFormComponent,
+    UtcDatePipe
     // SigninComponent,
     // SignupComponent
   ],
@@ -67,6 +73,9 @@ import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
     ScotchSelectFormComponent,
+    StyleEditFormComponent,
+    RegionEditFormComponent,
+    UtcDatePipe,
     // SigninComponent,
     // SignupComponent,
     RouterModule

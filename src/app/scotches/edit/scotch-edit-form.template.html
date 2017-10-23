@@ -12,32 +12,20 @@
 </div>
 <div>
     <div><label for="style">Style</label></div>
-    <div>
-      <select [(ngModel)]="scotch.style" id="style">
-        <option value="Single Malt">Single Malt</option>
-        <option value="Blended">Blended</option>
-        <option value="Single Grain">Single Grain</option>
-      </select>
-    </div>
+    <select id="style" [(ngModel)]="scotch.style" name="style">  
+        <option *ngFor="let style of styles" [ngValue]="style.name">{{style.name}}</option>
+    </select>
 </div>
 <div>
     <div><label for="region">Region</label></div>
-    <div>
-      <select [(ngModel)]="scotch.region" id="region">
-        <option value="Speyside">Speyside</option>
-        <option value="Highland">Highland</option>
-        <option value="Lowland">Lowland</option>
-        <option value="Islay">Islay</option>
-        <option value="Island">Island</option>
-        <option value="Campbeltown">Campbeltown</option>
-      </select>
+    <select id="region" [(ngModel)]="scotch.region" name="region">  
+        <option *ngFor="let region of regions" [value]="region.name">{{region.name}}</option>
+    </select>
+</div>
+<div><label for="inStock">In Stock </label>
+  <input type="checkbox" id="inStock" [(ngModel)]="scotch.inStock">
 </div>
 <div>
-    <div><label for="inStock">In Stock </label>
-      <input type="checkbox" id="inStock" [(ngModel)]="scotch.inStock">
-    </div>
-</div>
-<div>
-    <div><label for="comment">Comment</label></div>
+  <div><label for="comment">Comment</label></div>
   <div><textarea id="comment" [(ngModel)]="scotch.comment" rows="7" cols="45"></textarea></div>
 </div>

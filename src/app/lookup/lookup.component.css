@@ -1,0 +1,45 @@
+/***  Styles Section ********************/
+
+.styles {
+  margin-top: 20px;
+}
+
+/***  Regions Section ********************/
+
+.regions {
+  margin-top: 20px;
+}
+
+/***  Other Sections ********************/
+
+.section-label
+{
+    font-size: 125%;
+    color: darkgreen;
+    text-decoration: underline;
+    font-weight: bold;
+    margin: 30px 0 10px 0;
+    
+}
+
+.editButtomColumn {
+  width: 150px;
+  text-align: center;
+}
+
+
+
+
+.row {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/*** Utilities ****************************/
+
+.spacer
+{
+  padding-top: 20px;
+}
+

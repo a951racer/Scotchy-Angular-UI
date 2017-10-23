@@ -15,6 +15,8 @@
       <app-wishlist-select-form [wishlist]="editedObject" *ngIf="dialogType==='wishlist-select'"></app-wishlist-select-form>
       <app-scotch-select-form [scotch]="editedObject" *ngIf="dialogType==='scotch-select'"></app-scotch-select-form>
       <!-- <app-signin-form [credentials]="editedObject" *ngIf="dialogType==='signin'"></app-signin-form> -->
+      <app-style-edit-form [style]="editedObject" *ngIf="dialogType==='style'"></app-style-edit-form>
+      <app-region-edit-form [region]="editedObject" *ngIf="dialogType==='region'"></app-region-edit-form>
     </div> <!-- end body -->
 
 

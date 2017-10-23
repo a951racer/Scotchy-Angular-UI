@@ -111,7 +111,35 @@
 }
 
 
+/*** Tasting Popup ********************************/
+/* Tooltip container */
+.tastingPopup {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
 
+/* Tooltip text */
+
+.tastingPopup .tastingPopupContents {
+    visibility: hidden;
+    width: 520px;
+    background-color: #88ad8d;
+    color: black;
+    text-align: left;
+    padding: 17px 10px;
+    border-radius: 3px;
+  box-shadow: 5px 5px 15px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tastingPopup:hover .tastingPopupContents {
+    visibility: visible;
+}
 
 /** Edit Dialog **/
 

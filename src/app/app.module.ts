@@ -16,6 +16,7 @@ import { AuthenticationService } from './authentication/authentication.service';
 import { HomeModule } from './home/home.module';
 import { ScotchesModule } from './scotches/scotches.module';
 import { WishlistsModule } from './wishlist/wishlists.module';
+import { LookupsModule } from './lookup/lookup.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { WishlistsModule } from './wishlist/wishlists.module';
     HomeModule,
     ScotchesModule,
     WishlistsModule,
+    LookupsModule,
     RouterModule.forRoot(AppRoutes),
 
   ],
