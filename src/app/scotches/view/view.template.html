@@ -41,92 +41,100 @@
     <div [ngClass]="'scotch-detail-comment'" [innerHTML]="scotch.comment"></div>
   </div>
 
-  <!-- NOTES  -->
-  <div [ngClass]="'scotchDetailNotes'">
-      <div [ngClass]="'section-label'">Notes</div>
-      <div>
+    <div [ngClass]="'tabBar'">
+      <a id="notesButton" [ngClass]="'tabButton _activeTab'" (click)="openTab('notes')">Notes</a>
+      <a id="tastingsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('tastings')">My Tasting Notes</a>
+      <a id="thirdPartyTastingsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('thirdPartyTastings')">3rd Party Tasting Notes</a>
+      <a id="wishlistsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('wishlists')">Wish Lists</a>
+    </div>
+
+    <div [ngClass]="'tabContainer'">
+        
+    <!-- NOTES  -->
+      <div id="notes" [ngClass]="'tab'" style="display: block">
+        <!-- <div [ngClass]="'section-label'">Notes</div> -->
+        <div>
           <button [ngClass]="'button'" (click)="addNote()"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-  <div>
-	<table>
-	  <tr>
-	    <th [ngClass]="'dateColumn'">Date</th> 
-	    <th>Note</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let note of notes">
-        <td [ngClass]="'dateColumn'">{{note.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-		<td>{{note.note}}</td>
-		<td [ngClass]="'editButtomColumn'">
-			<button [ngClass]="'button'" (click)="editNote(note)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteNote(note)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
-</div>
+        </div>
+        <br>
+        <div>
+          <table>
+            <tr>
+              <th [ngClass]="'dateColumn'">Date</th> 
+              <th>Note</th>
+              <th [ngClass]="'editButtomColumn'"></th>
+            </tr>
+            <tr *ngFor="let note of notes">
+              <td [ngClass]="'dateColumn'">{{note.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
+              <td>{{note.note}}</td>
+              <td [ngClass]="'editButtomColumn'">
+                <button [ngClass]="'button'" (click)="editNote(note)"><i class="fa fa-pencil"></i> Edit</button>
+                <button [ngClass]="'button'" (click)="confirmDeleteNote(note)"><i class="fa fa-times"></i> Delete</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+    </div>
 
-  </div>
-
-  <!-- Tastings  -->
-  <div [ngClass]="'scotchDetailTastings'">
-      <div [ngClass]="'section-label'">Tastings</div>
+    <!-- Tastings  -->
+    <div id="tastings" [ngClass]="'tab'" style="display: none">
+      <!-- <div [ngClass]="'section-label'">Tastings</div> -->
       <div>
-          <button [ngClass]="'button'" (click)="addTasting()"><i class="fa fa-plus"></i> Add</button>
+        <button [ngClass]="'button'" (click)="addTasting()"><i class="fa fa-plus"></i> Add</button>
       </div>
       <br>
-  </div>
-	<table>
-	  <tr>
-	    <th [ngClass]="'dateColumn'">Date</th> 
-	    <th>Location</th>
-	    <th [ngClass]="'ratingColumn'">Rating</th>
+    <table>
+      <tr>
+        <th [ngClass]="'dateColumn'">Date</th> 
+        <th>Location</th>
+        <th [ngClass]="'ratingColumn'">Rating</th>
         <th>Comment</th>
         <th [ngClass]="'editButtomColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let tasting of personalTastings">
+      </tr>
+      <tr *ngFor="let tasting of personalTastings">
         <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-		<td>{{tasting.location}}</td>
+        <td>{{tasting.location}}</td>
         <td [ngClass]="'ratingColumn'">
           <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
         </td>
-		<td>
+        <td>
           <span [ngClass]="'tastingPopup'">{{tasting.comment}}
-          <span [ngClass]="'tastingPopupContents'">
-            <span><strong>Nose:<br></strong>{{tasting.nose}}</span><br><br>
-            <span><strong>Palate:<br></strong>{{tasting.palate}}</span><br><br>
-            <span><strong>Finish:<br></strong>{{tasting.finish}}</span><br><br>
-          </span>
+            <span [ngClass]="'tastingPopupContents'">
+              <span><strong>Nose:<br></strong>{{tasting.nose}}</span><br><br>
+              <span><strong>Palate:<br></strong>{{tasting.palate}}</span><br><br>
+              <span><strong>Finish:<br></strong>{{tasting.finish}}</span><br><br>
             </span>
+          </span>
         </td>
-		<td [ngClass]="'editButtomColumn'">
-			<button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
+        <td [ngClass]="'editButtomColumn'">
+          <button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
+          <button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
+        </td>
+      </tr>
+    </table>
+    </div>
 
-  <!-- Wishlists  -->
-  <div [ngClass]="'scotchDetailWishlists'">
-      <div [ngClass]="'section-label'">Wishlists</div>
+    <!-- Wishlists  -->
+    <div id="wishlists" [ngClass]="'tab'" style="display: none">
+      <!-- <div [ngClass]="'section-label'">Wishlists</div> -->
       <div>
-          <button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> Add</button>
+        <button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> Add</button>
       </div>
       <br>
-  </div>
-	<table>
-	  <tr>
-	    <th>Wishlist</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let wishlist of wishlists">
-        <td><a (click)="goToWishlist(wishlist)">{{wishlist}}</a></td>
-		<td [ngClass]="'editButtomColumn'">
-			<button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
-
+      <table>
+        <tr>
+          <th>Wishlist</th>
+          <th [ngClass]="'editButtomColumn'"></th>
+        </tr>
+        <tr *ngFor="let wishlist of wishlists">
+          <td><a (click)="goToWishlist(wishlist)">{{wishlist}}</a></td>
+          <td [ngClass]="'editButtomColumn'">
+            <button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div> <!-- tabContainer  -->
 </div>
 <app-footer></app-footer>
 

@@ -108,6 +108,23 @@ export class ViewComponent implements OnInit, OnDestroy {
     });
   }
 
+/*** Tabs **********************/
+
+  openTab(tabId) {
+    const tabs = document.getElementsByClassName('tab') as HTMLCollectionOf<HTMLElement>;
+    for (let i = 0; i < tabs.length; i++) {
+      tabs[i].style.display = 'none';
+    }
+    const tabButtons = document.getElementsByClassName('tabButton');
+    for (let i = 0; i < tabButtons.length; i++) {
+      tabButtons[i].className = tabButtons[i].className.replace('_activeTab', '_inactiveTab');
+    }
+    console.log(tabId + 'Button');
+    document.getElementById(tabId + 'Button').className = document.getElementById(tabId + 'Button')
+                                                          .className.replace('_inactiveTab', '_activeTab');
+    document.getElementById(tabId).style.display = 'block';
+  }
+
 /***  Notes  ****************/
 
   addNote() {
