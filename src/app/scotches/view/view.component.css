@@ -55,7 +55,6 @@
   font-weight: bold;
   color: darkolivegreen;
   max-width: 70px;
-  /* width: 10% */
 }
 
 .scotch-detail-data {
@@ -70,14 +69,29 @@
 
 .scotch-detail-comment
 {
-    background-color: #88ad8d;
-    border-radius: 10px;
-    padding: 10px;
-    color: black;
-    margin: 0 0 10px 5px;
-    box-shadow: 4px 4px 10px grey;
+  background-color: #88ad8d;
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+  margin: 0 0 30px 5px;
+  box-shadow: 4px 4px 10px grey;
+  /* width: 100%;  */
+  float: left;
 }
 
+.scotch-detail-comment-label {
+  float: left;
+  padding: 5px 10px;
+  font-size: 125%;
+  font-weight: bold;
+  color: darkolivegreen;
+  width: 100%;
+}
+
+.scotch-detail-comment-data {
+  float: left;
+  padding: 5px 10px;  
+}
 
 /***  Other Sections ********************/
 
@@ -160,28 +174,6 @@ a:link, a:visited, a:active, a:hover
 .tab {
   padding: 20px 10px 5px 20px;
 }
-
-.button
-{
-    border-radius: 3px;
-    border: 2px solid black;
-    height: 20px;
-    margin: 3px;
-    font-family: sans-serif;
-    font-size: 75%;
-    color: black;
-}
-
-.button:hover
-{
-    background-color: #003804;
-    color: white;
-}
-
-
-
-
-
 
 /***  Notes Section ********************/
 

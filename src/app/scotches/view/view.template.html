@@ -36,10 +36,13 @@
     </div>
     <div [ngClass]="'spacer'"></div>
     <div [ngClass]="'row'">
-      <div [ngClass]="'scotch-detail-label'">Comment:</div>
+      <div [ngClass]="'scotch-detail-comment'">
+        <div [ngClass]="'scotch-detail-comment-label'">Bottling Notes:</div>
+        <div [ngClass]="'scotch-detail-comment-data'">{{scotch.bottlingNotes}}</div>
+        <div [ngClass]="'scotch-detail-comment-label'">General Comments:</div>
+        <div [ngClass]="'scotch-detail-comment-data'">{{scotch.comment}}</div>
+      </div>
     </div>
-    <div [ngClass]="'scotch-detail-comment'" [innerHTML]="scotch.comment"></div>
-  </div>
 
     <div [ngClass]="'tabBar'">
       <a id="notesButton" [ngClass]="'tabButton _activeTab'" (click)="openTab('notes')">Notes</a>

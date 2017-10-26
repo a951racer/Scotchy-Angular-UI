@@ -119,7 +119,6 @@ export class ViewComponent implements OnInit, OnDestroy {
     for (let i = 0; i < tabButtons.length; i++) {
       tabButtons[i].className = tabButtons[i].className.replace('_activeTab', '_inactiveTab');
     }
-    console.log(tabId + 'Button');
     document.getElementById(tabId + 'Button').className = document.getElementById(tabId + 'Button')
                                                           .className.replace('_inactiveTab', '_activeTab');
     document.getElementById(tabId).style.display = 'block';
