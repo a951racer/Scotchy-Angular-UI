@@ -73,6 +73,12 @@
 	padding: 2px 16px;
 }
 
+/*** Dialog Forms  ******************************/
+
+.formLabel {
+  font-weight: bold;
+}
+
 /* Add Animation */
 @-webkit-keyframes animatetop {
     from {top: -300px; opacity: 0} 

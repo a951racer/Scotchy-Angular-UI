@@ -1,35 +1,35 @@
 <div>
-    <div><label for="distillerName">Distiller Name</label></div>
+    <div><label for="distillerName" [ngClass]="'formLabel'">Distiller Name</label></div>
     <div><input type="text" id="distillerName" [(ngModel)]="scotch.distillerName"></div>
 </div>
 <div>
-    <div><label for="flavor">Expression</label></div>
+    <div><label for="flavor" [ngClass]="'formLabel'">Expression</label></div>
     <div><input type="text" id="flavor" [(ngModel)]="scotch.flavor"></div>
 </div>
 <div>
-    <div><label for="age">Age</label></div>
+    <div><label for="age" [ngClass]="'formLabel'">Age</label></div>
     <div><input type="number" id="age" [(ngModel)]="scotch.age"></div>
 </div>
 <div>
-    <div><label for="style">Style</label></div>
+    <div><label for="style" [ngClass]="'formLabel'">Style</label></div>
     <select id="style" [(ngModel)]="scotch.style" name="style">  
         <option *ngFor="let style of styles" [ngValue]="style.name">{{style.name}}</option>
     </select>
 </div>
 <div>
-    <div><label for="region">Region</label></div>
+    <div><label for="region" [ngClass]="'formLabel'">Region</label></div>
     <select id="region" [(ngModel)]="scotch.region" name="region">  
         <option *ngFor="let region of regions" [value]="region.name">{{region.name}}</option>
     </select>
 </div>
-<div><label for="inStock">In Stock </label>
+<div><label for="inStock" [ngClass]="'formLabel'">In Stock </label>
   <input type="checkbox" id="inStock" [(ngModel)]="scotch.inStock">
 </div>
 <div>
-  <div><label for="bottlingNotes">Bottling Note</label></div>
+  <div><label for="bottlingNotes" [ngClass]="'formLabel'">Bottling Note</label></div>
   <div><textarea id="bottlingNotes" [(ngModel)]="scotch.bottlingNotes" rows="7" cols="45"></textarea></div>
 </div>
 <div>
-  <div><label for="comment">Comment</label></div>
+  <div><label for="comment" [ngClass]="'formLabel'">Comment</label></div>
   <div><textarea id="comment" [(ngModel)]="scotch.comment" rows="7" cols="45"></textarea></div>
 </div>
