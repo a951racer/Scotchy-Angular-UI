@@ -3,10 +3,14 @@
     <div><input type="date" id="dateAdded" [(ngModel)]="tasting.dateAdded"></div>
 </div>
 <div>
-    <div><label for="location" [ngClass]="'formLabel'">Location</label></div>
+    <div>
+      <label for="location" [ngClass]="'formLabel'">
+        <span *ngIf="tasting.thirdParty">Source</span>
+        <span *ngIf="!tasting.thirdParty">Location</span>
+      </label></div>
     <div><input type="text" id="location" [(ngModel)]="tasting.location"></div>
 </div>
-<div>
+<div *ngIf="!tasting.thirdParty">
     <div><label for="rating" [ngClass]="'formLabel'">Rating</label></div>
     <div><input type="number" id="rating" [(ngModel)]="tasting.rating"></div>
 </div>

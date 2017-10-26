@@ -25,25 +25,27 @@
   </div>
   
   <!-- Details -->
-  <div [ngClass]="'scotchDetails'">
-    <div [ngClass]="'row'">
-      <div [ngClass]="'scotch-detail-label'">Style:</div>
-      <div [ngClass]="'scotch-detail-data'">{{scotch.style}}</div>
-    </div>
-    <div [ngClass]="'row'">
-      <div [ngClass]="'scotch-detail-label'">Region:</div>
-      <div [ngClass]="'scotch-detail-data'">{{scotch.region}}</div>
-    </div>
-    <div [ngClass]="'spacer'"></div>
-    <div [ngClass]="'row'">
-      <div [ngClass]="'scotch-detail-comment'">
-        <div [ngClass]="'scotch-detail-comment-label'">Bottling Notes:</div>
-        <div [ngClass]="'scotch-detail-comment-data'">{{scotch.bottlingNotes}}</div>
-        <div [ngClass]="'scotch-detail-comment-label'">General Comments:</div>
-        <div [ngClass]="'scotch-detail-comment-data'">{{scotch.comment}}</div>
+<!--  <div [ngClass]="'scotch-detail-comment'"> -->
+    <div [ngClass]="'scotchDetails'">
+      <div [ngClass]="'row'">
+        <div [ngClass]="'scotch-detail-label'">Style:</div>
+        <div [ngClass]="'scotch-detail-data'">{{scotch.style}}</div>
+      </div>
+      <div [ngClass]="'row'">
+        <div [ngClass]="'scotch-detail-label'">Region:</div>
+        <div [ngClass]="'scotch-detail-data'">{{scotch.region}}</div>
+      </div>
+      <div [ngClass]="'row'">
+          <div [ngClass]="'scotch-detail-comment-label'">Bottling Notes:</div>
+          <div [ngClass]="'scotch-detail-comment-data'">{{scotch.bottlingNotes}}</div>
+      </div>
+      <div [ngClass]="'row'">
+          <div [ngClass]="'scotch-detail-comment-label'">General Comments:</div>
+          <div [ngClass]="'scotch-detail-comment-data'">{{scotch.comment}}</div>
       </div>
     </div>
-
+<!--  </div>  -->
+  
     <div [ngClass]="'tabBar'">
       <a id="notesButton" [ngClass]="'tabButton _activeTab'" (click)="openTab('notes')">Notes</a>
       <a id="tastingsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('tastings')">My Tasting Notes</a>
@@ -83,7 +85,7 @@
     <div id="tastings" [ngClass]="'tab'" style="display: none">
       <!-- <div [ngClass]="'section-label'">Tastings</div> -->
       <div>
-        <button [ngClass]="'button'" (click)="addTasting()"><i class="fa fa-plus"></i> Add</button>
+        <button [ngClass]="'button'" (click)="addTasting(false)"><i class="fa fa-plus"></i> Add</button>
       </div>
       <br>
     <table>
@@ -116,6 +118,42 @@
       </tr>
     </table>
     </div>
+
+
+    <!-- Third Party Tastings  -->
+    <div id="thirdPartyTastings" [ngClass]="'tab'" style="display: none">
+      <div>
+        <button [ngClass]="'button'" (click)="addTasting(true)"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+    <table>
+      <tr>
+        <th [ngClass]="'dateColumn'">Date</th> 
+        <th>Source</th>
+        <th>Comment</th>
+        <th [ngClass]="'editButtomColumn'"></th>
+      </tr>
+      <tr *ngFor="let thirdPartyTasting of thirdPartyTastings">
+        <td [ngClass]="'dateColumn'">{{thirdPartyTasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
+        <td>{{thirdPartyTasting.location}}</td>
+        <td>
+          <span [ngClass]="'thirdPartyTastingPopup'">{{thirdPartyTasting.comment}}
+            <span [ngClass]="'thirdPartyTastingPopupContents'">
+              <span><strong>Nose:<br></strong>{{thirdPartyTasting.nose}}</span><br><br>
+              <span><strong>Palate:<br></strong>{{thirdPartyTasting.palate}}</span><br><br>
+              <span><strong>Finish:<br></strong>{{thirdPartyTasting.finish}}</span><br><br>
+            </span>
+          </span>
+        </td>
+        <td [ngClass]="'editButtomColumn'">
+          <button [ngClass]="'button'" (click)="editTasting(thirdPartyTasting)"><i class="fa fa-pencil"></i> Edit</button>
+          <button [ngClass]="'button'" (click)="confirmDeleteTasting(thirdPartyTasting)"><i class="fa fa-times"></i> Delete</button>
+        </td>
+      </tr>
+    </table>
+    </div>
+      
+
 
     <!-- Wishlists  -->
     <div id="wishlists" [ngClass]="'tab'" style="display: none">

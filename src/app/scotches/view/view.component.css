@@ -39,7 +39,7 @@
 /*** Details section **************/
 
 .scotchDetails {
-
+  margin: 2px 0 20px 0;
 }
 
 .row {
@@ -187,6 +187,7 @@ a:link, a:visited, a:active, a:hover
 
 
 /*** Tasting Popup ********************************/
+
 /* Tooltip container */
 .tastingPopup {
     position: relative;
@@ -194,7 +195,7 @@ a:link, a:visited, a:active, a:hover
     border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
-/* Tooltip text */
+/* Tasting popup */
 
 .tastingPopup .tastingPopupContents {
     visibility: hidden;
@@ -215,6 +216,43 @@ a:link, a:visited, a:active, a:hover
 .tastingPopup:hover .tastingPopupContents {
     visibility: visible;
 }
+
+
+
+
+/*** Third Party Tasting Popup ********************************/
+
+/* Tooltip container */
+.thirdPartyTastingPopup {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tasting popup */
+
+.thirdPartyTastingPopup .thirdPartyTastingPopupContents {
+    visibility: hidden;
+    width: 520px;
+    background-color: #88ad8d;
+    color: black;
+    text-align: left;
+    padding: 17px 10px;
+    border-radius: 3px;
+  box-shadow: 5px 5px 15px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.thirdPartyTastingPopup:hover .thirdPartyTastingPopupContents {
+    visibility: visible;
+}
+
+
+
 
 /** Edit Dialog **/
 

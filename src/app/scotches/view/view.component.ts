@@ -184,10 +184,10 @@ export class ViewComponent implements OnInit, OnDestroy {
 
 /***  Tastings  ******************/
 
-  addTasting() {
+  addTasting(thirdParty: boolean) {
     this.newTasting = true;
     this.editedTasting = new Object();
-    this.editedTasting.thirdParty = false;
+    this.editedTasting.thirdParty = thirdParty;
     // this.editedTasting.source = 'Self';
     this._editDialogService.launchDialog({type: 'tasting',
                                             title: 'Add Tasting',
