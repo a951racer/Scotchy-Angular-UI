@@ -90,27 +90,27 @@
       <br>
     <table>
       <tr>
+	    <th [ngClass]="'openColumn'"></th>
         <th [ngClass]="'dateColumn'">Date</th> 
         <th>Location</th>
         <th [ngClass]="'ratingColumn'">Rating</th>
-        <th>Comment</th>
+        <th [ngClass]="'tastingColumn'">Nose</th>
+        <th [ngClass]="'tastingColumn'">Palate</th>
+        <th [ngClass]="'tastingColumn'">Finish</th>
+        <th [ngClass]="'tastingColumn'">Comment</th>
         <th [ngClass]="'editButtomColumn'"></th>
       </tr>
       <tr *ngFor="let tasting of personalTastings">
+		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showTastingDetails(tasting)"><i class="fa fa-folder-open-o"></i></button></td>
         <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
         <td>{{tasting.location}}</td>
         <td [ngClass]="'ratingColumn'">
           <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
         </td>
-        <td>
-          <span [ngClass]="'tastingPopup'">{{tasting.comment}}
-            <span [ngClass]="'tastingPopupContents'">
-              <span><strong>Nose:<br></strong>{{tasting.nose}}</span><br><br>
-              <span><strong>Palate:<br></strong>{{tasting.palate}}</span><br><br>
-              <span><strong>Finish:<br></strong>{{tasting.finish}}</span><br><br>
-            </span>
-          </span>
-        </td>
+        <td [ngClass]="'tastingColumn'">{{tasting.nose}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.palate}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.finish}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.comment}}</td>
         <td [ngClass]="'editButtomColumn'">
           <button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
           <button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
@@ -118,8 +118,7 @@
       </tr>
     </table>
     </div>
-
-
+      
     <!-- Third Party Tastings  -->
     <div id="thirdPartyTastings" [ngClass]="'tab'" style="display: none">
       <div>
@@ -128,23 +127,23 @@
       <br>
     <table>
       <tr>
+	    <th [ngClass]="'openColumn'"></th>
         <th [ngClass]="'dateColumn'">Date</th> 
         <th>Source</th>
-        <th>Comment</th>
+        <th [ngClass]="'tastingColumn'">Nose</th>
+        <th [ngClass]="'tastingColumn'">Palate</th>
+        <th [ngClass]="'tastingColumn'">Finish</th>
+        <th [ngClass]="'tastingColumn'">Comment</th>
         <th [ngClass]="'editButtomColumn'"></th>
       </tr>
       <tr *ngFor="let thirdPartyTasting of thirdPartyTastings">
+		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showTastingDetails(thirdPartyTasting)"><i class="fa fa-folder-open-o"></i></button></td>
         <td [ngClass]="'dateColumn'">{{thirdPartyTasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
         <td>{{thirdPartyTasting.location}}</td>
-        <td>
-          <span [ngClass]="'thirdPartyTastingPopup'">{{thirdPartyTasting.comment}}
-            <span [ngClass]="'thirdPartyTastingPopupContents'">
-              <span><strong>Nose:<br></strong>{{thirdPartyTasting.nose}}</span><br><br>
-              <span><strong>Palate:<br></strong>{{thirdPartyTasting.palate}}</span><br><br>
-              <span><strong>Finish:<br></strong>{{thirdPartyTasting.finish}}</span><br><br>
-            </span>
-          </span>
-        </td>
+        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.nose}}</td>
+        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.palate}}</td>
+        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.finish}}</td>
+        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.comment}}</td>
         <td [ngClass]="'editButtomColumn'">
           <button [ngClass]="'button'" (click)="editTasting(thirdPartyTasting)"><i class="fa fa-pencil"></i> Edit</button>
           <button [ngClass]="'button'" (click)="confirmDeleteTasting(thirdPartyTasting)"><i class="fa fa-times"></i> Delete</button>
@@ -152,8 +151,6 @@
       </tr>
     </table>
     </div>
-      
-
 
     <!-- Wishlists  -->
     <div id="wishlists" [ngClass]="'tab'" style="display: none">

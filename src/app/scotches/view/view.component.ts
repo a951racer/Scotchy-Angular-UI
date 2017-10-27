@@ -238,6 +238,13 @@ export class ViewComponent implements OnInit, OnDestroy {
     return clonedTasting;
   }
 
+  showTastingDetails(tasting: any) {
+    this.selectedTasting = tasting;
+    this._editDialogService.launchDialog({type: 'tastingDetail',
+                                            title: 'Tasting Notes',
+                                            editedObject: this.selectedTasting,
+                                            doLaunch: true});
+  }
 
   findSelectedTastingIndex(): number {
     return this.tastings.indexOf(this.selectedTasting);
@@ -326,6 +333,9 @@ export class ViewComponent implements OnInit, OnDestroy {
         break;
       case 'tasting':
         this.saveTasting();
+        break;
+      case 'tastingDetail':
+        // this.saveTasting();
         break;
       case 'wishlist-select':
         this.saveWishlist();

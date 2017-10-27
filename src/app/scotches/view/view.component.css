@@ -185,6 +185,14 @@ a:link, a:visited, a:active, a:hover
   width: 75px;
 }
 
+/*** Tasting sections  ******************************/
+
+.tastingColumn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
 
 /*** Tasting Popup ********************************/
 
