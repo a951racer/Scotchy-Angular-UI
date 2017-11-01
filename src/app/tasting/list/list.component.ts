@@ -151,7 +151,6 @@ export class ListComponent implements OnInit {
   }
 
   sortTable (column: string) {
-    console.log('sorting by: ' + column);
     let switching, i, x, y, temp, shouldSwitch, dir, switchcount = 0;
     switching = true;
     dir = 'asc';
@@ -161,8 +160,6 @@ export class ListComponent implements OnInit {
         shouldSwitch = false;
         x = this.filteredTastings[i][column];
         y = this.filteredTastings[i + 1][column];
-        console.log(this.filteredTastings[i]);
-        console.log('x: ' + x + ' y: ' + y);
         if (dir === 'asc') {
           if (x.toLowerCase() > y.toLowerCase()) {
             shouldSwitch = true;
@@ -192,7 +189,6 @@ export class ListComponent implements OnInit {
   }
 
   sortTableBoolean (column: string) {
-    console.log('sorting by: ' + column);
     let switching, i, x, y, temp, shouldSwitch, dir, switchcount = 0;
     switching = true;
     dir = 'asc';
@@ -202,8 +198,6 @@ export class ListComponent implements OnInit {
         shouldSwitch = false;
         x = (this.filteredTastings[i][column] || false);
         y = (this.filteredTastings[i + 1][column] || false);
-        console.log(this.filteredTastings[i]);
-        console.log('x: ' + x + ' y: ' + y);
         if (dir === 'asc') {
           if (x > y) {
             shouldSwitch = true;
