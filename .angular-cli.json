@@ -23,6 +23,7 @@
         "./styles/dialogs.css",
         "./styles/tables.css",
         "./styles/navbar.css",
+        "./styles/paginator.css",
         "../node_modules/font-awesome/css/font-awesome.min.css"
       ],
       "scripts": [],

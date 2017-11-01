@@ -1,33 +1,37 @@
-<div>
-    <div><label for="dateAdded" [ngClass]="'formLabel'">Date</label></div>
-    <div>{{tasting.dateAdded | utcDate | date: 'MM/dd/yyyy'}}</div>
+<div [ngClass]="'formRow'">
+  <div><label for="dateAdded" [ngClass]="'formLabel'">Date: </label>
+    <span>{{tasting.dateAdded | utcDate | date: 'MM/dd/yyyy'}}</span>
+  </div>
 </div>
-<div>
-    <div>
-      <label for="location" [ngClass]="'formLabel'">
-        <span *ngIf="tasting.thirdParty">Source</span>
-        <span *ngIf="!tasting.thirdParty">Location</span>
-      </label></div>
-    <div>{{tasting.location}}</div>
+<div [ngClass]="'formRow'">
+  <div>
+    <label for="location" [ngClass]="'formLabel'">
+      <span *ngIf="tasting.thirdParty">Source: </span>
+      <span *ngIf="!tasting.thirdParty">Location: </span>
+    </label>
+    <span>{{tasting.location}}</span>
+  </div>
 </div>
-<div *ngIf="!tasting.thirdParty">
-    <div><label for="rating" [ngClass]="'formLabel'">Rating</label></div>
-    <div>{{tasting.rating}}</div>
+<div [ngClass]="'formRow'" *ngIf="!tasting.thirdParty">
+  <div><label for="rating" [ngClass]="'formLabel'">Rating: </label>
+      <span>
+        <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
+      </span>
+  </div>
 </div>
-<div>
-    <div><label for="nose" [ngClass]="'formLabel'">Nose</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="nose" [ngClass]="'formLabel'">Nose:</label></div>
     <div>{{tasting.nose}}</div>
 </div>
-<div>
-    <div><label for="palate" [ngClass]="'formLabel'">Palate</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="palate" [ngClass]="'formLabel'">Palate:</label></div>
     <div>{{tasting.palate}}</div>
 </div>
-<div>
-    <div><label for="finish" [ngClass]="'formLabel'">Finish</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="finish" [ngClass]="'formLabel'">Finish:</label></div>
     <div>{{tasting.finish}}</div>
 </div>
-
-<div>
-    <div><label for="comment" [ngClass]="'formLabel'">Comment</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="comment" [ngClass]="'formLabel'">Comment:</label></div>
     <div>{{tasting.comment}}</div>
 </div>

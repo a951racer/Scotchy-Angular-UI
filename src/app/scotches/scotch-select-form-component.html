@@ -1,5 +1,5 @@
-<div>
-    <div><label for="dramName" [ngClass]="'formLabel'">Select Scotch</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="dramName" [ngClass]="'formLabel'">Select Scotch:</label></div>
     <select id="id" [(ngModel)]="scotch._id" name="id">  
         <option *ngFor="let sc of scotches" [value]="sc._id">{{sc.dramName}}</option>
     </select>

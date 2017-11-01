@@ -75,6 +75,10 @@
 
 /*** Dialog Forms  ******************************/
 
+.formRow {
+  margin-bottom: 7px;
+}
+
 .formLabel {
   font-weight: bold;
 }

@@ -1,5 +1,5 @@
-<div>
-    <div><label for="wishListName" [ngClass]="'formLabel'">Select Wishlist</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="wishListName" [ngClass]="'formLabel'">Select Wishlist:</label></div>
     <select id="wishListName" [(ngModel)]="wishlist.wishListName" name="wishListName">  
         <option *ngFor="let wl of wishlists" [value]="wl.wishListName">{{wl.wishListName}}</option>
     </select>

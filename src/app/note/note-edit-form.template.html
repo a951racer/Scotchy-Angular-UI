@@ -1,8 +1,8 @@
-<div>
-  <div><label for="dateAdded" [ngClass]="'formLabel'">Date</label></div>
+<div [ngClass]="'formRow'">
+  <div><label for="dateAdded" [ngClass]="'formLabel'">Date:</label></div>
   <div><input type="date" id="dateAdded" [(ngModel)]="note.dateAdded"></div>
 </div> <!-- end date added -->
-<div>
-  <div><label for="note" [ngClass]="'formLabel'">Note</label></div>
+<div [ngClass]="'formRow'">
+  <div><label for="note" [ngClass]="'formLabel'">Note:</label></div>
   <div><textarea id="note" [(ngModel)]="note.note" rows="5" cols="45"></textarea></div>
 </div><!-- end note -->
