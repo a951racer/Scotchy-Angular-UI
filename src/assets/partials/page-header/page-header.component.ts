@@ -14,7 +14,8 @@ export class PageHeaderComponent {
   @Input() subtitle: string;
   showMenu = (this.router.url.substr(1, 8) === 'scotches'
              || this.router.url.substr(1, 9) === 'wishlists'
-             || this.router.url.substr(1, 7) === 'lookups');
+             || this.router.url.substr(1, 7) === 'lookups'
+             || this.router.url.substr(1, 8) === 'tastings');
 
 
 

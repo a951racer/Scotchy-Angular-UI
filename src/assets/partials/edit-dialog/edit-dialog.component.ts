@@ -16,10 +16,8 @@ export class EditDialog implements OnDestroy {
   editedObject: any;
 
   constructor(private editDialogService: EditDialogService) {
-    console.log('constructing');
     this.subscription = editDialogService.dialogLaunched.subscribe(
       inputs => {
-        console.log('open dialog');
         this.dialogType = inputs.type;
         this.dialogTitle = inputs.title;
         this.editedObject = inputs.editedObject;

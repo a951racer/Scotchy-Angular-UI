@@ -11,6 +11,7 @@
       <app-scotch-edit-form [scotch]="editedObject" *ngIf="dialogType==='scotch'"></app-scotch-edit-form>
       <app-note-edit-form [note]="editedObject" *ngIf="dialogType==='note'"></app-note-edit-form>
       <app-tasting-edit-form [tasting]="editedObject" *ngIf="dialogType==='tasting'"></app-tasting-edit-form>
+      <app-tasting-detail-form [tasting]="editedObject" *ngIf="dialogType==='tastingDetail'"></app-tasting-detail-form>
       <app-wishlist-edit-form [wishlist]="editedObject" *ngIf="dialogType==='wishlist'"></app-wishlist-edit-form>
       <app-wishlist-select-form [wishlist]="editedObject" *ngIf="dialogType==='wishlist-select'"></app-wishlist-select-form>
       <app-scotch-select-form [scotch]="editedObject" *ngIf="dialogType==='scotch-select'"></app-scotch-select-form>

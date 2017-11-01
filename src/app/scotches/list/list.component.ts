@@ -14,7 +14,7 @@ import { EditDialogService } from '../../../assets/partials/edit-dialog/edit-dia
    ]
 })
 
-export class ListComponent implements OnInit, OnChanges {
+export class ListComponent implements OnInit {
   scotches: any;
   errorMessage: string;
   title = 'Cabinet';
@@ -52,10 +52,6 @@ export class ListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this._scotchesService.list().subscribe(scotches  => this.scotches = scotches);
-  }
-
-  ngOnChanges() {
-    // this._scotchesService.list().subscribe(scotches  => this.scotches = scotches);
   }
 
   addScotch() {
@@ -241,7 +237,7 @@ export class ListComponent implements OnInit, OnChanges {
 
   filterByRating(c, id) {
     console.log('filter by rating');
-    let input, filter, table, tr, td, i, children, rating;
+    let input, filter, table, tr, td, i, rating;
     input = document.getElementById(id);
     filter = Number(input.value);
     console.log(filter);

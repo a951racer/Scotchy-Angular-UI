@@ -14,9 +14,7 @@ export class EditDialogService {
 
   // Service message commands
   launchDialog(inputs: any) {
-    console.log(inputs);
     this.dialogLaunchSource.next(inputs);
-    console.log('next');
   }
 
   dialogClose(inputs: any) {

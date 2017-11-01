@@ -2,10 +2,10 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-tasting-edit-form',
-  templateUrl: './tasting-edit-form.template.html'
+  selector: 'app-tasting-detail-form',
+  templateUrl: './tasting-detail-form.template.html'
 })
 
-export class TastingEditFormComponent {
+export class TastingDetailFormComponent {
   @Input() tasting: any;
 }

@@ -39,7 +39,7 @@
 /*** Details section **************/
 
 .scotchDetails {
-
+  margin: 2px 0 20px 0;
 }
 
 .row {
@@ -55,7 +55,6 @@
   font-weight: bold;
   color: darkolivegreen;
   max-width: 70px;
-  /* width: 10% */
 }
 
 .scotch-detail-data {
@@ -70,14 +69,29 @@
 
 .scotch-detail-comment
 {
-    background-color: #88ad8d;
-    border-radius: 10px;
-    padding: 10px;
-    color: black;
-    margin: 0 0 10px 5px;
-    box-shadow: 4px 4px 10px grey;
+  background-color: #88ad8d;
+  border-radius: 10px;
+  padding: 10px;
+  color: black;
+  margin: 0 0 30px 5px;
+  box-shadow: 4px 4px 10px grey;
+  /* width: 100%;  */
+  float: left;
 }
 
+.scotch-detail-comment-label {
+  float: left;
+  padding: 5px 10px;
+  font-size: 125%;
+  font-weight: bold;
+  color: darkolivegreen;
+  width: 100%;
+}
+
+.scotch-detail-comment-data {
+  float: left;
+  padding: 5px 10px;  
+}
 
 /***  Other Sections ********************/
 
@@ -100,6 +114,67 @@
   text-align: center;
 }
 
+
+/*** Tabs *********************/
+
+a:link, a:visited, a:active, a:hover
+{
+  text-decoration: none;
+  
+}
+
+.tabButton {
+  float:left;
+  box-sizing: inherit;
+  padding: 8px 16px;
+  margin: 1px 1px 1px 0;
+  border-style: solid;
+  border-color: #003804;
+  border-width: 1px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-style: solid;
+  border-width: 1px 1px 0 1px;
+  border-color: darkolivegreen;
+}
+
+._activeTab, a:hover {
+  background-color: #d0dfd2;
+  color: black;
+  border-bottom: none;
+}
+
+
+._inactiveTab {
+  background-color: #003804;
+  color: white;
+}
+
+.tabContainer {
+  border-style: solid;
+  border-width: 0 1px 1px 1px;
+  border-color: darkolivegreen;
+  background-color: #d0dfd2;
+}
+
+.tabBar {
+  /* float: left; */
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-left: none;
+  border-right: none;
+  border-color: darkolivegreen;
+  /* background-color:  #003804; */
+  height: 34px;
+  width: 100%;
+}
+
+.tab {
+  padding: 20px 10px 5px 20px;
+}
+
 /***  Notes Section ********************/
 
 .scotchDetailNotes {
@@ -110,8 +185,17 @@
   width: 75px;
 }
 
+/*** Tasting sections  ******************************/
+
+.tastingColumn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
 
 /*** Tasting Popup ********************************/
+
 /* Tooltip container */
 .tastingPopup {
     position: relative;
@@ -119,7 +203,7 @@
     border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
 }
 
-/* Tooltip text */
+/* Tasting popup */
 
 .tastingPopup .tastingPopupContents {
     visibility: hidden;
@@ -140,6 +224,43 @@
 .tastingPopup:hover .tastingPopupContents {
     visibility: visible;
 }
+
+
+
+
+/*** Third Party Tasting Popup ********************************/
+
+/* Tooltip container */
+.thirdPartyTastingPopup {
+    position: relative;
+    display: inline-block;
+    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tasting popup */
+
+.thirdPartyTastingPopup .thirdPartyTastingPopupContents {
+    visibility: hidden;
+    width: 520px;
+    background-color: #88ad8d;
+    color: black;
+    text-align: left;
+    padding: 17px 10px;
+    border-radius: 3px;
+  box-shadow: 5px 5px 15px;
+ 
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.thirdPartyTastingPopup:hover .thirdPartyTastingPopupContents {
+    visibility: visible;
+}
+
+
+
 
 /** Edit Dialog **/
 

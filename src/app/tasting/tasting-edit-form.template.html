@@ -1,29 +1,32 @@
-<div>
-    <div><label for="dateAdded" [ngClass]="'formLabel'">Date</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="dateAdded" [ngClass]="'formLabel'">Date:</label></div>
     <div><input type="date" id="dateAdded" [(ngModel)]="tasting.dateAdded"></div>
 </div>
-<div>
-    <div><label for="location" [ngClass]="'formLabel'">Location</label></div>
+<div [ngClass]="'formRow'">
+    <div>
+      <label for="location" [ngClass]="'formLabel'">
+        <span *ngIf="tasting.thirdParty">Source:</span>
+        <span *ngIf="!tasting.thirdParty">Location:</span>
+      </label></div>
     <div><input type="text" id="location" [(ngModel)]="tasting.location"></div>
 </div>
-<div>
-    <div><label for="rating" [ngClass]="'formLabel'">Rating</label></div>
+<div *ngIf="!tasting.thirdParty" [ngClass]="'formRow'">
+    <div><label for="rating" [ngClass]="'formLabel'">Rating:</label></div>
     <div><input type="number" id="rating" [(ngModel)]="tasting.rating"></div>
 </div>
-<div>
-    <div><label for="nose" [ngClass]="'formLabel'">Nose</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="nose" [ngClass]="'formLabel'">Nose:</label></div>
     <div><textarea id="nose" [(ngModel)]="tasting.nose" rows="3" cols="35"></textarea></div>
 </div>
-<div>
-    <div><label for="palate" [ngClass]="'formLabel'">Palate</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="palate" [ngClass]="'formLabel'">Palate:</label></div>
     <div><textarea id="palate" [(ngModel)]="tasting.palate" rows="3" cols="35"></textarea></div>
 </div>
-<div>
-    <div><label for="finish" [ngClass]="'formLabel'">Finish</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="finish" [ngClass]="'formLabel'">Finish:</label></div>
     <div><textarea id="finish" [(ngModel)]="tasting.finish" rows="3" cols="35"></textarea></div>
 </div>
-
-<div>
-    <div><label for="comment" [ngClass]="'formLabel'">Comment</label></div>
+<div [ngClass]="'formRow'">
+    <div><label for="comment" [ngClass]="'formLabel'">Comment:</label></div>
     <div><textarea id="comment" [(ngModel)]="tasting.comment" rows="3" cols="35"></textarea></div>
 </div>

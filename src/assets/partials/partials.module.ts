@@ -17,6 +17,7 @@ import { EditDialog } from './edit-dialog/edit-dialog.component';
 import { ScotchEditFormComponent } from '../../app/scotches/edit/scotch-edit-form.component';
 import { NoteEditFormComponent } from '../../app/note/note-edit-form.component';
 import { TastingEditFormComponent } from '../../app/tasting/tasting-edit-form.component';
+import { TastingDetailFormComponent } from '../../app/tasting/tasting-detail-form.component';
 import { WishlistEditFormComponent } from '../../app/wishlist/edit/wishlist-edit-form.component';
 import { WishlistSelectFormComponent } from '../../app/wishlist/wishlist-select-form.component';
 import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form-component';
@@ -46,6 +47,7 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     ScotchEditFormComponent,
     NoteEditFormComponent,
     TastingEditFormComponent,
+    TastingDetailFormComponent,
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
     ScotchSelectFormComponent,
@@ -70,6 +72,7 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     ScotchEditFormComponent,
     NoteEditFormComponent,
     TastingEditFormComponent,
+    TastingDetailFormComponent,
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
     ScotchSelectFormComponent,

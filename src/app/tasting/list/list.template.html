@@ -1,0 +1,71 @@
+<app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+  <div style="margin: 10px">
+    <div [ngClass]="'formRow'"><label for="types" [ngClass]="'formLabel'">Types: </label>
+      <span>
+        <select id="types" name="types" (change)="filterTable()">  
+          <option value="Both">Both</option>
+          <option value="Personal">Personal</option>
+          <option value="ThirdParty">3rd Party</option>
+        </select>
+      </span>
+    </div>
+    <div [ngClass]="'formRow'">
+      <label for="types" [ngClass]="'formLabel'">Search: </label>
+      <input id="search" (keyup)="filterTable()">
+    </div>
+  </div>
+<div>
+    <table id="tastingsTable">
+      <tr>
+	    <th [ngClass]="'openColumn'"></th>
+        <th [ngClass]="'dateColumn'" (click)="sortTable('dateAdded')">Date <i class="fa fa-sort"></i></th> 
+        <th [ngClass]="'thirdPartyColumn'" (click)="sortTableBoolean('thirdParty')">3rd Party <i class="fa fa-sort"></i></th> 
+        <th [ngClass]="'ratingColumn'" (click)="sortTableNumeric('rating')">Rating <i class="fa fa-sort"></i></th>
+        <th [ngClass]="'tastingColumn'">Nose</th>
+        <th [ngClass]="'tastingColumn'">Palate</th>
+        <th [ngClass]="'tastingColumn'">Finish</th>
+        <th [ngClass]="'tastingColumn'">Comment</th>
+        <th>Dram <i class="fa fa-sort"></i></th>
+        <!-- <th [ngClass]="'editButtomColumn'"></th> -->
+      </tr>
+      <tr *ngFor="let tasting of displayedTastings">
+		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showDetails(tasting)"><i class="fa fa-folder-open-o"></i></button></td>
+        <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
+        <td [ngClass]="'thirdPartyColumn'">
+          <div *ngIf="tasting.thirdParty">
+            <span [ngClass]="'check-mark'"><i class="fa fa-check"></i></span>
+          </div>
+        </td>
+        <td [ngClass]="'ratingColumn'">
+          <app-rating-star [rating]="tasting.rating ? tasting.rating : 0" *ngIf="!tasting.thirdParty"></app-rating-star>
+        </td>
+        <td [ngClass]="'tastingColumn'">{{tasting.nose}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.palate}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.finish}}</td>
+        <td [ngClass]="'tastingColumn'">{{tasting.comment}}</td>
+        <td><a [routerLink]="['/scotches/', tasting.scotchId]">{{tasting.dramName}}</a></td>
+        <!-- <td [ngClass]="'editButtomColumn'">
+          <button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
+          <button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
+        </td> -->
+      </tr>
+    </table>
+  
+    <div>
+      <div [ngClass]="'pageCounter'">
+        <label>Page {{currentIndex}} of {{numberOfPages}}</label>
+      </div>
+      <div>
+        <div [ngClass]="'pagination'">
+          <a [ngClass]="{'disabled': (currentIndex == 1)}" (click)="prevPage()"><i class="fa fa-angle-double-left"></i></a>
+          <a *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}" (click)="setPage(page)">{{page}}</a>
+          <a [ngClass]="{'disabled': (currentIndex == numberOfPages)}" (click)="nextPage()"><i class="fa fa-angle-double-right"></i></a>
+        </div>
+      </div>
+  </div>
+  
+</div>
+<app-footer></app-footer>
+
+<app-edit-dialog></app-edit-dialog>
+<app-confirm-dialog></app-confirm-dialog>

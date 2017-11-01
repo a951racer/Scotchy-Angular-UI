@@ -7,6 +7,6 @@ import { Component, Input } from '@angular/core';
 })
 
 export class RatingComponent {
-  private range: Array<number> = [1, 2, 3, 4, 5];
+  public range: Array<number> = [1, 2, 3, 4, 5];
   @Input() rating: number;
 }
