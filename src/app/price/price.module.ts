@@ -4,11 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { TastingsRoutes } from './tastings.routes';
-import { TastingsComponent } from './tastings.component';
+import { PricesRoutes } from './price.routes';
+import { PricesComponent } from './price.component';
 import { PartialsModule } from '../../assets/partials/partials.module';
 
 import { ListComponent } from './list/list.component';
+// import { ViewComponent } from './view/view.component';
 
 
 @NgModule({
@@ -17,12 +18,12 @@ import { ListComponent } from './list/list.component';
     FormsModule,
     PartialsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(TastingsRoutes),
+    RouterModule.forChild(PricesRoutes),
   ],
   declarations: [
-    TastingsComponent,
+    PricesComponent,
     ListComponent,
 //    ViewComponent,
   ]
 })
-export class TastingsModule {}
+export class PricesModule {}

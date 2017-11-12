@@ -51,10 +51,10 @@
     font-weight: bold;
 }
 
-.filterRow {
-  background-color: darkolivegreen;
-}
-
 .hiddenData {
   display: none;
+}
+
+.filterRow {
+  background-color: darkolivegreen;
 }

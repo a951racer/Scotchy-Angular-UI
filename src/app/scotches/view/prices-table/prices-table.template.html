@@ -1,0 +1,38 @@
+    <!-- Prices  -->
+    <div id="prices" [ngClass]="'tab'" style="display: none">
+      <div>
+        <button [ngClass]="'button'" (click)="addPrice()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Location</th>
+          <th>Size</th>
+          <th [ngClass]="'currencyColumn'">Price</th>
+          <th [ngClass]="'currencyColumn'">Tax</th>
+          <th [ngClass]="'currencyColumn'">Shipping</th>
+          <th [ngClass]="'currencyColumn'">Total</th>
+          <th [ngClass]="'commentColumn'">Comment</th>
+          <th [ngClass]="'editButtomColumn'"></th>
+        </tr>
+        <tr *ngFor="let price of prices">
+          <td>{{price.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
+          <td>{{price.location}}</td>
+          <td>{{price.size}}</td>
+          <td [ngClass]="'currencyColumn'">{{price.price | currency:USD:'symbol'}}</td>
+          <td [ngClass]="'currencyColumn'">{{price.tax | currency:USD:'symbol'}}</td>
+          <td [ngClass]="'currencyColumn'">{{price.shipping | currency:USD:'symbol'}}</td>
+          <td [ngClass]="'currencyColumn'">{{price.total | currency:USD:'symbol'}}</td>
+          <td [ngClass]="'commentColumn'">{{price.comment}}</td>
+          <td [ngClass]="'editButtomColumn'">
+            <button [ngClass]="'button'" (click)="editPrice(price)"><i class="fa fa-pencil"></i> Edit</button>
+            <button [ngClass]="'button'" (click)="confirmDeletePrice(price)"><i class="fa fa-times"></i> Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+<app-edit-dialog [type]="'prices'"></app-edit-dialog>
+<app-confirm-dialog [type]="'prices'"></app-confirm-dialog>

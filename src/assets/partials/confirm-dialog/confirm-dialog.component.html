@@ -1,6 +1,6 @@
 <!-- Confirmation Dialog -->
 
-<div id="confirmationDialog" [ngClass]="'edit-dialog'">
+<div [id]="'confirmationDialog' + type" [ngClass]="'edit-dialog'">
   <div [ngClass]="'edit-dialog-content'">
     <div [ngClass]="'dialog-header'">
       <span>{{dialogTitle}}</span>

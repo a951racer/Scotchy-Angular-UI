@@ -20,6 +20,7 @@ import { TastingEditFormComponent } from '../../app/tasting/tasting-edit-form.co
 import { TastingDetailFormComponent } from '../../app/tasting/tasting-detail-form.component';
 import { WishlistEditFormComponent } from '../../app/wishlist/edit/wishlist-edit-form.component';
 import { WishlistSelectFormComponent } from '../../app/wishlist/wishlist-select-form.component';
+import { PriceEditFormComponent } from '../../app/price/price-edit-form.component';
 import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form-component';
 // import { SigninComponent } from '../../app/authentication/signin/signin.component';
 // import { SignupComponent } from '../../app/authentication/signup/signup.component';
@@ -50,6 +51,7 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     TastingDetailFormComponent,
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
+    PriceEditFormComponent,
     ScotchSelectFormComponent,
     StyleEditFormComponent,
     RegionEditFormComponent,
@@ -75,6 +77,7 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     TastingDetailFormComponent,
     WishlistEditFormComponent,
     WishlistSelectFormComponent,
+    PriceEditFormComponent,
     ScotchSelectFormComponent,
     StyleEditFormComponent,
     RegionEditFormComponent,

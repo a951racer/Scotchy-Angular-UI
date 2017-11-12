@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class ConfirmDialog implements OnDestroy {
+  @Input() type: String;
+
   subscription: Subscription;
   confirmDialog: any;
   dialogType: string;
@@ -21,13 +23,13 @@ export class ConfirmDialog implements OnDestroy {
         this.dialogType = inputs.type;
         this.dialogTitle = inputs.title;
         this.dialogPrompt = inputs.prompt;
-        this.confirmDialog = document.getElementById('confirmationDialog');
+        this.confirmDialog = document.getElementById('confirmationDialog' + this.type);
         this.confirmDialog.style.display = 'block';
     });
   }
 
   close(confirmed) {
-    this.confirmDialog = document.getElementById('confirmationDialog');
+    this.confirmDialog = document.getElementById('confirmationDialog' + this.type);
     this.confirmDialog.style.display = 'none';
     this.confirmDialogService.dialogClose({type: this.dialogType, confirmed: confirmed});
   }

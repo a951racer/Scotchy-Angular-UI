@@ -17,6 +17,7 @@ import { HomeModule } from './home/home.module';
 import { ScotchesModule } from './scotches/scotches.module';
 import { WishlistsModule } from './wishlist/wishlists.module';
 import { TastingsModule } from './tasting/tastings.module';
+import { PricesModule } from './price/price.module';
 import { LookupsModule } from './lookup/lookup.module';
 
 @NgModule({
@@ -33,6 +34,7 @@ import { LookupsModule } from './lookup/lookup.module';
     ScotchesModule,
     WishlistsModule,
     TastingsModule,
+    PricesModule,
     LookupsModule,
     RouterModule.forRoot(AppRoutes),
 

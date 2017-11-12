@@ -18,7 +18,11 @@ export class NavbarComponent {
         break;
       case 'Wishlists': this.router.navigate(['wishlists']);
         break;
-      case 'tastings': this.router.navigate(['tastings']);
+      case 'Tastings': this.router.navigate(['tastings']);
+        break;
+      case 'Prices':
+        console.log('nav prices - bar');
+        this.router.navigate(['prices']);
         break;
       case 'Sign-Out': this.router.navigate(['authentication/signout']);
         break;

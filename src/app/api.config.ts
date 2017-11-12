@@ -6,6 +6,7 @@ export const apiConfig = {
   scotchesURL: '/scotches',
   wishlistsURL: '/wishlists',
   tastingsURL: '/tastings',
+  pricesURL: '/prices',
   stylesURL: '/styles',
   regionsURL: '/regions'
 };

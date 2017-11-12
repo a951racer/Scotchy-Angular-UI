@@ -1,0 +1,24 @@
+    <div id="wishlists" [ngClass]="'tab'" style="display: none">
+      <!-- <div [ngClass]="'section-label'">Wishlists</div> -->
+      <div>
+        <button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> Add</button>
+      </div>
+      <br>
+      <table>
+        <tr>
+          <th>Wishlist</th>
+          <th [ngClass]="'editButtomColumn'"></th>
+        </tr>
+        <tr *ngFor="let wishlist of wishlists">
+          <!-- <td><a (click)="goToWishlist(wishlist)">{{wishlist}}</a></td> -->
+          <td>{{wishlist}}</td>
+          <td [ngClass]="'editButtomColumn'">
+            <button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+
+<app-edit-dialog [type]="'wishlists'"></app-edit-dialog>
+<app-confirm-dialog [type]="'wishlists'"></app-confirm-dialog>
