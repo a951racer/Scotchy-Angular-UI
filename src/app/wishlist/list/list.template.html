@@ -1,29 +1,47 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
-<div style="margin: 10px">
-	<button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> New</button>
-</div>
-<div>
-	<table>
-	  <tr>
-	    <th [ngClass]="'openColumn'"></th>
-	    <th [ngClass]="'dateColumn'">Created</th> 
-	    <th [ngClass]="'nameColumn'">Wish List Name</th> 
-        <th [ngClass]="'descriptionColumn'">Description</th>
-	    <th [ngClass]="'editColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let wishlist of wishlists">
-		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showDetails(wishlist)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'dateColumn'">{{wishlist.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-        <td [ngClass]="'nameColumn'">{{wishlist.wishListName}}</td>
-        <td [ngClass]="'descriptionColumn'">{{wishlist.description}}</td>
-		<td [ngClass]="'editColumn'">
-			<button [ngClass]="'button'" (click)="editWishlist(wishlist)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
-</div>
+
+<app-data-table 
+       dataSetName="wishlists" 
+       [dataset]="wishlists" 
+       pageSize="15" 
+       newButton="true"
+       detailsButton="true" 
+       editButton="true" 
+       deleteButton="true" 
+       filterButton="true"
+       (showDetails)="showDetails($event)" 
+       (newItem)="addWishlist($event)"
+       (editItem)="editWishlist($event)"
+       (deleteItem)="confirmDeleteWishlist($event)">
+  <app-column  
+              fieldName="dateAdded" 
+              header="Created" 
+              sortable="true" 
+              filterable="false" 
+              dataType="date" 
+              styleClass="dateColumn">
+  </app-column>
+  <app-column  
+              fieldName="wishListName" 
+              header="Wish List Name" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+
+  <app-column  
+              fieldName="description" 
+              header="Description" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+</app-data-table>
+
+
 <app-footer></app-footer>
 
-<app-edit-dialog></app-edit-dialog>
+<app-edit-dialog [type]="'wishlist'"></app-edit-dialog>
 <app-confirm-dialog></app-confirm-dialog>

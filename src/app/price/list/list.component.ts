@@ -16,10 +16,7 @@ import { EditDialogService } from '../../../assets/partials/edit-dialog/edit-dia
 
 export class ListComponent implements OnInit {
   prices: any;
-  filteredPrices: any;
-  displayedPrices;
-  errorMessage: string;
-  title = 'Prices';
+  title = 'Price List';
   subtitle = 'Current Prices';
   displayDialog: boolean;
   confirmDialog: boolean;
@@ -28,16 +25,10 @@ export class ListComponent implements OnInit {
   newPrice: boolean;
   dialogTitle: string;
   confirmDialogTitle: string;
-  numberOfPages: number;
-  currentIndex: number;
-  startPage: number;
-  pages: number;
+
+  dataSetName = 'prices';
   pageSize = 15;
-  pagesIndex: number;
-  showFilters = false;
-  filters = [];
-  numberOfFilters = 4;
-  
+
   constructor(private _pricesService: PricesService,
               private _router: Router,
               private _confirmDialogService: ConfirmDialogService,
@@ -63,225 +54,10 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this._pricesService.list().subscribe(prices  => {
       this.prices = prices;
-      this.filteredPrices = prices;
-      for (let x = 0; x < this.numberOfFilters; x++) {
-        this.filters[x] = new Object();
-      }
-      this.filters[0]['inputId'] = 'locationFilter';
-      this.filters[0]['fieldName'] = 'location';
-      this.filters[1]['inputId'] = 'sizeFilter';
-      this.filters[1]['fieldName'] = 'size';
-      this.filters[2]['inputId'] = 'commentFilter';
-      this.filters[2]['fieldName'] = 'comment';
-      this.filters[3]['inputId'] = 'dramFilter';
-      this.filters[3]['fieldName'] = 'dramName';
-      this.init();
     });
   }
 
   /*****************************************************************************************************/
-
-  init() {
-    this.currentIndex = 1;
-    this.startPage = 1;
-    this.pages = 4;
-
-    this.numberOfPages = Math.floor(this.filteredPrices.length / this.pageSize);
-    if (this.filteredPrices.length % this.pageSize !== 0) {
-      this.numberOfPages++;
-    }
-    this.refreshItems();
-  }
-
-  fillArray(): any {
-    const obj = new Array();
-    for (let index = this.startPage; index < this.startPage + this.numberOfPages; index ++) {
-      obj.push(index);
-    }
-    return obj;
-  }
-
-  refreshItems() {
-    this.displayedPrices = this.filteredPrices.slice((this.currentIndex - 1) * this.pageSize, (this.currentIndex) * this.pageSize);
-    this.pagesIndex =  this.fillArray();
-  }
-
-   prevPage() {
-      if (this.currentIndex > 1) {
-         this.currentIndex--;
-      }
-      if (this.currentIndex < this.startPage) {
-         this.currentIndex = this.startPage;
-      }
-      this.refreshItems();
-   }
-
-  nextPage() {
-    if (this.currentIndex < this.numberOfPages) {
-      this.currentIndex ++;
-    }
-    if (this.currentIndex >= (this.startPage + this.numberOfPages)) {
-      this.currentIndex = this.startPage - this.pages + 1;
-    }
-    this.refreshItems();
-  }
-
-  setPage(index: number) {
-    this.currentIndex = index;
-    this.refreshItems();
-  }
-
-/*** Table Filtering *************************/
-
-  toggleFilterRow() {
-    let input;
-    this.showFilters = !this.showFilters;
-    if (!this.showFilters) {
-      for (let x = 0; x < this.numberOfFilters; x++) {
-        input = document.getElementById(this.filters[x].inputId);
-        input.value = '';
-      }
-      this.filterTable();
-    }
-  }
-
-  filterTable() {
-    let input, filter, show;
-    this.filteredPrices = [];
-    this.prices.forEach(price => {
-      show = true;
-      for (let x = 0; x < this.numberOfFilters; x++) {
-        input = document.getElementById(this.filters[x].inputId);
-        filter = input.value.toUpperCase();
-        if (filter !== '') {
-          const searchDomain = (price[this.filters[x].fieldName] || '');
-          if (searchDomain.toUpperCase().indexOf(filter) == -1) {
-                show = false;
-          };
-        };
-      };
-      if (show) {
-        this.filteredPrices.push(price);
-      };
-    });
-    this.init();
-  }
-
-  sortTable (column: string) {
-    let switching, i, x, y, temp, shouldSwitch, dir, switchcount = 0;
-    switching = true;
-    dir = 'asc';
-    while (switching) {
-      switching = false;
-      for (i = 0; i < this.filteredPrices.length - 1; i++) {
-        shouldSwitch = false;
-        x = (this.filteredPrices[i][column] || '');
-        y = (this.filteredPrices[i + 1][column] || '');
-        console.log(x);
-        console.log(y);
-        if (dir === 'asc') {
-          if (x.toLowerCase() > y.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
-        } else if (dir === 'desc') {
-          if (x.toLowerCase() < y.toLowerCase()) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-      if (shouldSwitch) {
-        temp = this.filteredPrices[i];
-        this.filteredPrices[i] = this.filteredPrices[i + 1];
-        this.filteredPrices[i + 1] = temp;
-        switching = true;
-        switchcount++;
-      } else {
-        if (switchcount === 0 && dir === 'asc') {
-          dir = 'desc';
-          switching = true;
-        }
-      }
-    }
-    this.init();
-  }
-
-  sortTableBoolean (column: string) {
-    let switching, i, x, y, temp, shouldSwitch, dir, switchcount = 0;
-    switching = true;
-    dir = 'asc';
-    while (switching) {
-      switching = false;
-      for (i = 0; i < this.filteredPrices.length - 1; i++) {
-        shouldSwitch = false;
-        x = (this.filteredPrices[i][column] || false);
-        y = (this.filteredPrices[i + 1][column] || false);
-        if (dir === 'asc') {
-          if (x > y) {
-            shouldSwitch = true;
-            break;
-          }
-        } else if (dir === 'desc') {
-          if (x < y) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-      if (shouldSwitch) {
-        temp = this.filteredPrices[i];
-        this.filteredPrices[i] = this.filteredPrices[i + 1];
-        this.filteredPrices[i + 1] = temp;
-        switching = true;
-        switchcount++;
-      } else {
-        if (switchcount === 0 && dir === 'asc') {
-          dir = 'desc';
-          switching = true;
-        }
-      }
-    }
-    this.init();
-  }
-
-  sortTableNumeric (column: string) {
-    let switching, i, x, y, temp, shouldSwitch, dir, switchcount = 0;
-    switching = true;
-    dir = 'asc';
-    while (switching) {
-      switching = false;
-      for (i = 0; i < this.filteredPrices.length - 1; i++) {
-        shouldSwitch = false;
-        x = (this.filteredPrices[i][column] || 0);
-        y = (this.filteredPrices[i + 1][column] || 0);
-        if (dir === 'asc') {
-          if (x > y) {
-            shouldSwitch = true;
-            break;
-          }
-        } else if (dir === 'desc') {
-          if (x < y) {
-            shouldSwitch = true;
-            break;
-          }
-        }
-      }
-      if (shouldSwitch) {
-        temp = this.filteredPrices[i];
-        this.filteredPrices[i] = this.filteredPrices[i + 1];
-        this.filteredPrices[i + 1] = temp;
-        switching = true;
-        switchcount++;
-      } else {
-        if (switchcount === 0 && dir === 'asc') {
-          dir = 'desc';
-          switching = true;
-        }
-      }
-    }
-    this.init();
-  }
 
   addPrice() {
     this.newPrice = true;

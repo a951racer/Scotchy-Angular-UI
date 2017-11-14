@@ -1,74 +1,90 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
-  <div style="margin: 10px">
-      <button [ngClass]="'button'" (click)="toggleFilterRow()"><i class="fa fa-filter"></i> Filter</button>
-  </div>
-<div>
-    <table id="pricesTable">
-      <tr>
-        <th [ngClass]="'dateColumn'" (click)="sortTable('dateAdded')">Date <i class="fa fa-sort"></i></th> 
-        <th [ngClass]="'locationColumn'" (click)="sortTable('location')">Location <i class="fa fa-sort"></i></th> 
-        <th [ngClass]="'sizeColumn'" (click)="sortTable('size')">Size <i class="fa fa-sort"></i></th> 
-        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('price')">Price <i class="fa fa-sort"></i></th>
-        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('tax')">Tax <i class="fa fa-sort"></i></th>
-        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('shipping')">Shipping <i class="fa fa-sort"></i></th>
-        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('total')">Total <i class="fa fa-sort"></i></th>
-        <th [ngClass]="'commentColumn'">Comment</th>
-        <th>Dram <i class="fa fa-sort"></i></th>
-        <!-- <th [ngClass]="'editButtomColumn'"></th> -->
-      </tr>
-      <tr [ngClass]="'filterRow'" *ngIf="showFilters">
-        <td [ngClass]="'dateColumn'" style="color: white; font-weight: light"><i class="fa fa-filter"></i></td>
-        <td [ngClass]="'locationColumn'">
-          <input type="text" id="locationFilter" (keyup)="filterTable()" size="15">
-        </td>
-        <td [ngClass]="'sizeColumn'">
-          <input type="text" id="sizeFilter" (keyup)="filterTable()" size="5">
-        </td>
-        <td [ngClass]="'currencyColumn'"></td>
-        <td [ngClass]="'currencyColumn'"></td>
-        <td [ngClass]="'currencyColumn'"></td>
-        <td [ngClass]="'currencyColumn'"></td>
-        <td [ngClass]="'commentColumn'">
-          <input type="text" id="commentFilter" (keyup)="filterTable()" size="15" >
-        </td>
-        <td>
-          <input type="text" id="dramFilter" (keyup)="filterTable()" size="15" >
-        </td>
-        <!-- <td [ngClass]="'editColumn'"></td> -->
-      </tr>
 
-      <tr *ngFor="let price of displayedPrices">
-        <td [ngClass]="'dateColumn'">{{price.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-        <td [ngClass]="'locationColumn'">{{price.location}}</td>
-        <td [ngClass]="'sizeColumn'">{{price.size}}</td>
-        <td [ngClass]="'currencyColumn'">{{price.price | currency:USD:'symbol'}}</td>
-        <td [ngClass]="'currencyColumn'">{{price.tax | currency:USD:'symbol'}}</td>
-        <td [ngClass]="'currencyColumn'">{{price.shipping | currency:USD:'symbol'}}</td>
-        <td [ngClass]="'currencyColumn'">{{price.total | currency:USD:'symbol'}}</td>
-        <td [ngClass]="'commentColumn'">{{price.comment}}</td>
-        <td><a [routerLink]="['/scotches/', price.scotchId]">{{price.dramName}}</a></td>
-        <!-- <td [ngClass]="'editButtomColumn'">
-          <button [ngClass]="'button'" (click)="editTasting(price)"><i class="fa fa-pencil"></i> Edit</button>
-          <button [ngClass]="'button'" (click)="confirmDeleteTasting(price)"><i class="fa fa-times"></i> Delete</button>
-        </td> -->
-      </tr>
-    </table>
-  
-    <div>
-      <div [ngClass]="'pageCounter'">
-        <label>Page {{currentIndex}} of {{numberOfPages}}</label>
-      </div>
-      <div>
-        <div [ngClass]="'pagination'">
-          <a [ngClass]="{'disabled': (currentIndex == 1)}" (click)="prevPage()"><i class="fa fa-angle-double-left"></i></a>
-          <a *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}" (click)="setPage(page)">{{page}}</a>
-          <a [ngClass]="{'disabled': (currentIndex == numberOfPages)}" (click)="nextPage()"><i class="fa fa-angle-double-right"></i></a>
-        </div>
-      </div>
-  </div>
-  
-</div>
+<app-data-table 
+                dataSetName="prices" 
+                [dataset]="prices" 
+                pageSize="15" 
+                detailsButton="false" 
+                editButton="false" 
+                deleteButton="false" 
+                filterButton="true"
+                (showDetails)="showDetails($event)" 
+                (editItem)="editPrice($event)"
+                (deleteItem)="confirmDeletePrice($event)">
+          <app-column  
+                      fieldName="dateAdded" 
+                      header="Date" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="date" 
+                      styleClass="dateColumn">
+          </app-column>
+          <app-column  
+                      fieldName="dramName" 
+                      header="Dram" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+          <app-column  
+                      fieldName="location" 
+                      header="Location" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+          <app-column  
+                      fieldName="size" 
+                      header="Size" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+          <app-column  
+                      fieldName="price" 
+                      header="Price" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="currency" 
+                      styleClass="numericColumn">
+          </app-column>
+          <app-column  
+                      fieldName="tax" 
+                      header="Tax" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="currency" 
+                      styleClass="numericColumn">
+          </app-column>
+          <app-column  
+                      fieldName="shipping" 
+                      header="Shipping" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="currency" 
+                      styleClass="numericColumn">
+          </app-column>
+          <app-column  
+                      fieldName="total" 
+                      header="Total" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="currency" 
+                      styleClass="numericColumn">
+          </app-column>
+          <app-column  
+                      fieldName="comment" 
+                      header="Comment" 
+                      sortable="false" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+</app-data-table>
+
 <app-footer></app-footer>
-
-<app-edit-dialog></app-edit-dialog>
+<app-edit-dialog [type]="'price'"></app-edit-dialog>
 <app-confirm-dialog></app-confirm-dialog>

@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 export class EditDialog implements OnDestroy {
   @Input() type: String;
-  
+
   subscription: Subscription;
   editDialog: any;
   dialogType: string;
@@ -20,6 +20,7 @@ export class EditDialog implements OnDestroy {
   constructor(private editDialogService: EditDialogService) {
     this.subscription = editDialogService.dialogLaunched.subscribe(
       inputs => {
+        console.log(inputs);
         this.dialogType = inputs.type;
         this.dialogTitle = inputs.title;
         this.editedObject = inputs.editedObject;

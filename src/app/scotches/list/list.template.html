@@ -1,78 +1,85 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
-<div style="margin: 10px">
-  <button [ngClass]="'button'" (click)="addScotch()"><i class="fa fa-plus"></i> New</button>
-  <button [ngClass]="'button'" (click)="toggleFilterRow()"><i class="fa fa-filter"></i> Filter</button>
-</div>
-<div>
-	<table id="scotchTable">
-	  <tr>
-	    <th [ngClass]="'openColumn'"></th>
-	    <th [ngClass]="'distillerColumn'" (click)="sortTable(11)">Distiller <i class="fa fa-sort"></i></th> 
-	    <th [ngClass]="'expressionColumn'">Expression</th>
-	    <th [ngClass]="'ageColumn'" (click)="sortTableNumeric(3)">Age <i class="fa fa-sort"></i></th>
-	    <th [ngClass]="'styleColumn'" (click)="sortTable(4)">Style <i class="fa fa-sort"></i></th>
-	    <th [ngClass]="'regionColumn'" (click)="sortTable(5)">Region <i class="fa fa-sort"></i></th>
-        <th [ngClass]="'ratingColumn'" (click)="sortTable(6)">Rating <i class="fa fa-sort"></i></th>
-	    <th [ngClass]="'instockColumn'" (click)="sortTable(10)">In Stock <i class="fa fa-sort"></i></th>
-	    <th [ngClass]="'editColumn'"></th>
-	  </tr>
-      <tr [ngClass]="'filterRow'" *ngIf="showFilters">
-        <td [ngClass]="'openColumn'" style="color: white; font-weight: light"><i class="fa fa-filter"></i></td>
-        <td [ngClass]="'distillerColumn'">
-          <input type="text" id="distillerFilter" (keyup)="filterTable(1, 'distillerFilter')" size="15">
-        </td>
-        <td [ngClass]="'expressionColumn'">
-          <input type="text" id="expressionFilter" (keyup)="filterTable(2, 'expressionFilter')" size="15">
-        </td>
-        <td [ngClass]="'ageColumn'">
-          <input type="text" id="ageFilter" (keyup)="filterTable(3, 'ageFilter')" size="2" maxlength="2">
-        </td>
-        <td [ngClass]="'styleColumn'">
-          <input type="text" id="styleFilter" (keyup)="filterTable(4, 'styleFilter')" size="5" >
-        </td>
-        <td [ngClass]="'regionsColumn'">
-          <input type="text" id="regionFilter" (keyup)="filterTable(5, 'regionFilter')" size="10" >
-        </td>
-        <td [ngClass]="'ratingColumn'">
-          <select id="ratingFilter" name="region" (change)="filterByRating(6, 'ratingFilter')">
-            <option value=""></option>
-            <option value="1">*</option>
-            <option value="2">**</option>
-            <option value="3">***</option>
-            <option value="4">*****</option>
-            <option value="5">******</option>
-          </select>
-        </td>
-        <td [ngClass]="'instockColumn'">
-          <input type="checkbox" id="instockFilter" (click)="filterInStock(7, 'instockFilter')" (value)="1">
-        </td>
-        <td [ngClass]="'editColumn'"></td>
-      </tr>
-	  <tr *ngFor="let scotch of scotches">
-		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showDetails(scotch)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'distillerColumn'">{{scotch.distillerName}}</td>
-		<td [ngClass]="'expressionColumn'">{{scotch.flavor}}</td>
-		<td [ngClass]="'ageColumn'">{{scotch.age}}</td>
-		<td [ngClass]="'styleColumn'">{{scotch.style}}</td>
-		<td [ngClass]="'regionColumn'">{{scotch.region}}</td>
-        <td [ngClass]="'ratingColumn'">
-          <app-rating-star [rating]="scotch.rating ? scotch.rating : 0"></app-rating-star>
-        </td>
-        <td [ngClass]="'instockColumn'">
-          <div *ngIf="scotch.inStock">
-            <span [ngClass]="'check-mark'"><i class="fa fa-check"></i></span>
-          </div>
-        </td>
-		<td [ngClass]="'editColumn'">
-			<button [ngClass]="'button'" (click)="editScotch(scotch)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteScotch(scotch)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-        <td [ngClass]="'hiddenData'">{{scotch.rating}}</td>
-        <td [ngClass]="'hiddenData'">{{scotch.inStock ? 1 : 0}}</td>
-        <td [ngClass]="'hiddenData'">{{scotch.dramName}}</td>
-	  </tr>
-	</table>
-</div>
+
+
+<app-data-table 
+       dataSetName="scotches" 
+       [dataset]="scotches" 
+       pageSize="15" 
+       detailsButton="true" 
+       editButton="true" 
+       deleteButton="true" 
+       newButton="true"
+       filterButton="true"
+       (showDetails)="showDetails($event)" 
+       (newItem)="addScotch($event)"
+       (editItem)="editScotch($event)"
+       (deleteItem)="confirmDeleteScotch($event)">
+  <app-column  
+              fieldName="distillerName" 
+              header="Distiller" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="flavor" 
+              header="Expression" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+
+  <app-column  
+              fieldName="age" 
+              header="Age" 
+              sortable="true" 
+              filterable="true" 
+              dataType="numeric"
+              styleClass="numericColumn">
+  </app-column>
+  <app-column  
+              fieldName="style" 
+              header="Style" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="region" 
+              header="Region" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="rating" 
+              header="Rating" 
+              sortable="true" 
+              filterable="true" 
+              dataType="numeric" 
+              displayAs="rating"
+              styleClass="ratingColumn">
+  </app-column>
+  <app-column  
+              fieldName="inStock" 
+              header="In Stock" 
+              sortable="true" 
+              filterable="true" 
+              dataType="boolean" 
+              displayAs="check-box"
+              styleClass="checkboxColumn">
+  </app-column>
+</app-data-table>
+
+
+
+
+
+
 <app-footer></app-footer>
 
 <app-edit-dialog></app-edit-dialog>

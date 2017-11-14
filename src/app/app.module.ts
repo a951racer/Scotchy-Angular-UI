@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { PartialsModule } from '../assets/partials/partials.module';
 import { customHttpProvider } from '../helpers/custom-http';
+import { DatatableModule } from '../assets/datatable/datatable.module';
 
 import { AppComponent } from './app.component';
 import { AppRoutes } from './app.routes';
@@ -22,7 +23,7 @@ import { LookupsModule } from './lookup/lookup.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     PartialsModule,
@@ -36,6 +37,7 @@ import { LookupsModule } from './lookup/lookup.module';
     TastingsModule,
     PricesModule,
     LookupsModule,
+    DatatableModule,
     RouterModule.forRoot(AppRoutes),
 
   ],
@@ -44,7 +46,6 @@ import { LookupsModule } from './lookup/lookup.module';
     customHttpProvider
   ],
   exports: [
-
   ],
   bootstrap: [AppComponent]
 })

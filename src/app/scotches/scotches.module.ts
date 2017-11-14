@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DatatableModule } from '../../assets/datatable/datatable.module';
 
 import { ScotchesRoutes } from './scotches.routes';
 import { ScotchesComponent } from './scotches.component';
@@ -21,6 +22,7 @@ import { ThirdTastingsTableComponent } from './view/third-tastings-table/third-t
   imports: [
     CommonModule,
     FormsModule,
+    DatatableModule,
     PartialsModule,
     ReactiveFormsModule,
     RouterModule.forChild(ScotchesRoutes),

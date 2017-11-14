@@ -1,28 +1,36 @@
     <!-- NOTES  -->
       <div id="notes" [ngClass]="'tab'" style="display: block">
-        <!-- <div [ngClass]="'section-label'">Notes</div> -->
-        <div>
-          <button [ngClass]="'button'" (click)="addNote()"><i class="fa fa-plus"></i> Add</button>
-        </div>
-        <br>
-        <div>
-          <table>
-            <tr>
-              <th [ngClass]="'dateColumn'">Date</th> 
-              <th>Note</th>
-              <th [ngClass]="'editButtomColumn'"></th>
-            </tr>
-            <tr *ngFor="let note of notes">
-              <td [ngClass]="'dateColumn'">{{note.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-              <td>{{note.note}}</td>
-              <td [ngClass]="'editButtomColumn'">
-                <button [ngClass]="'button'" (click)="editNote(note)"><i class="fa fa-pencil"></i> Edit</button>
-                <button [ngClass]="'button'" (click)="confirmDeleteNote(note)"><i class="fa fa-times"></i> Delete</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-    </div>
+  <app-data-table 
+                dataSetName="notes" 
+                [dataset]="notes" 
+                pageSize="6" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="true" 
+                deleteButton="true" 
+                filterButton="false"
+                (showDetails)="showDetails($event)" 
+                (newItem)="addNote($event)"
+                (editItem)="editNote($event)"
+                (deleteItem)="confirmDeleteNote($event)">
+          <app-column  
+                      fieldName="dateAdded" 
+                      header="Date" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="date" 
+                      styleClass="dateColumn">
+          </app-column>
+          <app-column  
+                      fieldName="note" 
+                      header="Note" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+  </app-data-table>
+        
 
 <app-edit-dialog [type]="'notes'"></app-edit-dialog>
 <app-confirm-dialog [type]="'notes'"></app-confirm-dialog>

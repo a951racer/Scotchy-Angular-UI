@@ -1,50 +1,53 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
   <!-- Styles  -->
-  <div [ngClass]="'styles'">
-      <div [ngClass]="'section-label'">Scotch Styles</div>
-      <div>
-          <button [ngClass]="'button'" (click)="addStyle()"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-  <div>
-	<table>
-	  <tr>
-	    <th>Style</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let style of styles">
-		<td>{{style.name}}</td>
-		<td [ngClass]="'editButtomColumn'">
-			<button [ngClass]="'button'" (click)="editStyle(style)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteStyle(style)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
-</div>
+  <div [ngClass]="'section-label'">Scotch Styles</div>
 
-  </div>
+  <app-data-table 
+                dataSetName="styles" 
+                [dataset]="styles" 
+                pageSize="8" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="true" 
+                deleteButton="true" 
+                filterButton="false"
+                (newItem)="addStyle($event)"
+                (editItem)="editStyle($event)"
+                (deleteItem)="confirmDeleteStyle($event)">
+          <app-column  
+                      fieldName="name" 
+                      header="Styles" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+  </app-data-table>
+
 
   <!-- Regions  -->
-  <div [ngClass]="'regions'">
-      <div [ngClass]="'section-label'">Scotch Regions</div>
-      <div>
-          <button [ngClass]="'button'" (click)="addRegion()"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-  </div>
-	<table>
-	  <tr>
-	    <th>Region</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-	  </tr>
-	  <tr *ngFor="let region of regions">
-		<td>{{region.name}}</td>
-		<td [ngClass]="'editButtomColumn'">
-			<button [ngClass]="'button'" (click)="editRegion(region)"><i class="fa fa-pencil"></i> Edit</button>
-			<button [ngClass]="'button'" (click)="confirmDeleteRegion(region)"><i class="fa fa-times"></i> Delete</button>
-		</td>
-	  </tr>
-	</table>
+  <div [ngClass]="'section-label'">Scotch Regions</div>
+  <app-data-table 
+                dataSetName="regions" 
+                [dataset]="regions" 
+                pageSize="8" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="true" 
+                deleteButton="true" 
+                filterButton="false"
+                (newItem)="addRegion($event)"
+                (editItem)="editRegion($event)"
+                (deleteItem)="confirmDeleteRegion($event)">
+          <app-column  
+                      fieldName="name" 
+                      header="Regions" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+  </app-data-table>
 
 <app-footer></app-footer>
 

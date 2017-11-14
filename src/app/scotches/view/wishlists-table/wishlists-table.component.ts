@@ -40,7 +40,7 @@ export class WishlistsTableComponent implements OnInit {
     this._confirmDialogService.dialogResponded.subscribe(
       response => {
         if (response.confirmed) {
-          this._scotchesService.deleteWishlist(this.scotch._id, this.selectedWishlist).subscribe(scotch => {
+          this._scotchesService.deleteWishlist(this.scotch._id, this.selectedWishlist.wishListName).subscribe(scotch => {
           this.selectedWishlist = null;
           this.refreshNeeded.emit('wishlists');
           });
@@ -94,7 +94,7 @@ export class WishlistsTableComponent implements OnInit {
     this.selectedWishlist = bygoneWishlist;
     this._confirmDialogService.launchDialog({type: 'wishlist',
                                             title: 'Delete Wishlist',
-                                            prompt: 'Do you want to delete "' + this.selectedWishlist + '"?',
+                                            prompt: 'Do you want to delete "' + this.selectedWishlist.wishListName + '"?',
                                             doLaunch: true});
   }
 

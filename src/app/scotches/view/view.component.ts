@@ -28,7 +28,7 @@ export class ViewComponent implements OnInit, OnDestroy {
   tastings: any[];
   personalTastings: any[];
   thirdPartyTastings: any[];
-  wishlists: any[];
+  wishlists = [];
   prices: any[];
 
   paramsObserver: any;
@@ -69,7 +69,6 @@ export class ViewComponent implements OnInit, OnDestroy {
     _editDialogService.dialogResponded.subscribe(
       response => {
         if (response.confirmed) {
-          console.log('wrong turn');
           this.saveScotch();
         }
       });
@@ -95,8 +94,13 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.tastings = scotch.tastings;
         this.personalTastings = this.tastings.filter(tasting => !tasting.thirdParty);
         this.thirdPartyTastings = this.tastings.filter(tasting => tasting.thirdParty);
-        this.wishlists = scotch.wishLists;
         this.prices = scotch.prices;
+        this.wishlists = [];
+        for (let x = 0; x < scotch.wishLists.length; x++) {
+          const wl = new Object();
+          wl['wishListName'] = scotch.wishLists[x];
+          this.wishlists.push(wl);
+        }
         this.allowEdit = (this.user && this.user._id === this.scotch.creator._id);
         this.dataLoaded = true;
       },

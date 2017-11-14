@@ -1,39 +1,69 @@
-    <div id="tastings" [ngClass]="'tab'" style="display: none">
-      <!-- <div [ngClass]="'section-label'">Tastings</div> -->
-      <div>
-        <button [ngClass]="'button'" (click)="addTasting(false)"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-    <table>
-      <tr>
-	    <th [ngClass]="'openColumn'"></th>
-        <th [ngClass]="'dateColumn'">Date</th> 
-        <th>Location</th>
-        <th [ngClass]="'ratingColumn'">Rating</th>
-        <th [ngClass]="'tastingColumn'">Nose</th>
-        <th [ngClass]="'tastingColumn'">Palate</th>
-        <th [ngClass]="'tastingColumn'">Finish</th>
-        <th [ngClass]="'tastingColumn'">Comment</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-      </tr>
-      <tr *ngFor="let tasting of personalTastings">
-		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showTastingDetails(tasting)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-        <td>{{tasting.location}}</td>
-        <td [ngClass]="'ratingColumn'">
-          <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
-        </td>
-        <td [ngClass]="'tastingColumn'">{{tasting.nose}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.palate}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.finish}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.comment}}</td>
-        <td [ngClass]="'editButtomColumn'">
-          <button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
-          <button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
-        </td>
-      </tr>
-    </table>
-    </div>
+<div id="tastings" [ngClass]="'tab'" style="display: none">
+
+<app-data-table 
+       dataSetName="personalTastings" 
+       [dataset]="personalTastings" 
+       pageSize="6" 
+       detailsButton="true" 
+       editButton="true" 
+       deleteButton="true" 
+       newButton="true"
+       filterButton="true"
+       (showDetails)="showTastingDetails($event)" 
+       (newItem)="addTasting($event)"
+       (editItem)="editTasting($event)"
+       (deleteItem)="confirmDeleteTasting($event)">
+  <app-column  
+              fieldName="dateAdded" 
+              header="Date" 
+              sortable="true" 
+              filterable="false" 
+              dataType="date" 
+              styleClass="dateColumn">
+  </app-column>
+
+  <app-column  
+              fieldName="rating" 
+              header="Rating" 
+              sortable="true" 
+              filterable="true" 
+              dataType="numeric"
+              displayAs="rating"
+              styleClass="ratingColumn">
+  </app-column>
+  <app-column  
+              fieldName="nose" 
+              header="Nose" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="palate" 
+              header="Palate" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="finish" 
+              header="Finish" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+  <app-column  
+              fieldName="comment" 
+              header="Comment" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn">
+  </app-column>
+</app-data-table>
 
 <app-edit-dialog [type]="'tastings'"></app-edit-dialog>
 <app-confirm-dialog [type]="'tastings'"></app-confirm-dialog>
