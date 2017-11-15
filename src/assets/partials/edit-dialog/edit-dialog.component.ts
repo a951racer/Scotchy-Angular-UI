@@ -9,6 +9,8 @@ import { Subscription } from 'rxjs/Subscription';
 })
 
 export class EditDialog implements OnDestroy {
+  @Input() type: String;
+
   subscription: Subscription;
   editDialog: any;
   dialogType: string;
@@ -21,13 +23,13 @@ export class EditDialog implements OnDestroy {
         this.dialogType = inputs.type;
         this.dialogTitle = inputs.title;
         this.editedObject = inputs.editedObject;
-        this.editDialog = document.getElementById('editDialog');
+        this.editDialog = document.getElementById('editDialog' + this.type);
         this.editDialog.style.display = 'block';
     });
   }
 
   close(confirmed) {
-    this.editDialog = document.getElementById('editDialog');
+    this.editDialog = document.getElementById('editDialog' + this.type);
     this.editDialog.style.display = 'none';
     this.editDialogService.dialogClose({type: this.dialogType, confirmed: confirmed});
   }

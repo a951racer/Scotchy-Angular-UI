@@ -1,0 +1,27 @@
+.commentColumn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.dateColumn {
+  width: 90px;
+}
+
+.currencyColumn {
+  text-align: right;
+  width: 80px;
+}
+
+.editColumn {
+  /* max-width: 43px; */
+}
+
+.hiddenData {
+  display: none;
+}
+
+.filterRow {
+  background-color: darkolivegreen;
+}

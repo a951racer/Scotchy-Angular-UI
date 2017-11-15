@@ -102,13 +102,37 @@ export class ScotchesService {
       .catch(this.handleError);
     }
 
-  deleteWishlist(scotchId: string, wishlist: any): Observable<any> {
+  deleteWishlist(scotchId: string, wishListName: any): Observable<any> {
+    const wishlist = new Object();
+    wishlist['wishListName'] = wishListName;
     return this._http
       .delete(`${this._baseURL}/wishlists/${scotchId}`, wishlist)
       .map((res: Response) => res.json())
       .catch(this.handleError);
     }
 
+/*** Price Stuff *********************************************/
+
+  addPrice(scotchId: string, price: any): Observable<any> {
+    return this._http
+      .post(`${this._baseURL}/prices/${scotchId}`, price)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+    }
+
+  updatePrice(scotchId: string, price: any): Observable<any> {
+    return this._http
+      .put(`${this._baseURL}/prices/${scotchId}`, price)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+    }
+
+  deletePrice(scotchId: string, price: any): Observable<any> {
+    return this._http
+      .delete(`${this._baseURL}/prices/${scotchId}`, price)
+      .map((res: Response) => res.json())
+      .catch(this.handleError);
+    }
 
 /***  Error Handling **************************************/
 

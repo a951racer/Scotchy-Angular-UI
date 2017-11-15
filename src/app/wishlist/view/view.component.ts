@@ -122,7 +122,6 @@ export class ViewComponent implements OnInit, OnDestroy {
   }
 
   saveScotch() {
-    console.log(this.editedScotch);
     if (this.newScotch) {
       this.newScotch = false;
       this._scotchesService.addWishlist(this.editedScotch._id, this.wishlist).subscribe(scotch => {
@@ -210,4 +209,9 @@ export class ViewComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.paramsObserver.unsubscribe();
   }
+
+  navigate(link: any) {
+    this._router.navigate([link.link, link.id]);
+  }
+
 }

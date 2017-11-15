@@ -13,7 +13,6 @@
     width: 50%;
 }
 
-
 .in-stock
 {
     font-size: 150%;
@@ -172,7 +171,7 @@ a:link, a:visited, a:active, a:hover
 }
 
 .tab {
-  padding: 20px 10px 5px 20px;
+  padding: 20px 10px 25px 20px;
 }
 
 /***  Notes Section ********************/
@@ -225,9 +224,6 @@ a:link, a:visited, a:active, a:hover
     visibility: visible;
 }
 
-
-
-
 /*** Third Party Tasting Popup ********************************/
 
 /* Tooltip container */
@@ -259,7 +255,16 @@ a:link, a:visited, a:active, a:hover
     visibility: visible;
 }
 
+/*** Prices Tab *************************/
 
+.currencyColumn {
+  text-align: right;
+  width: 75px;
+}
+
+.sizeColumn {
+  
+}
 
 
 /** Edit Dialog **/

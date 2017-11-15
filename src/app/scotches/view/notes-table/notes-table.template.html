@@ -1,0 +1,35 @@
+<div id="notes" [ngClass]="'tab'" style="display: block">
+  <app-data-table 
+                dataSetName="notes" 
+                [dataset]="notes" 
+                pageSize="6" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="true" 
+                deleteButton="true" 
+                filterButton="false"
+                (showDetails)="showDetails($event)" 
+                (newItem)="addNote($event)"
+                (editItem)="editNote($event)"
+                (deleteItem)="confirmDeleteNote($event)">
+          <app-column  
+                      fieldName="dateAdded" 
+                      header="Date" 
+                      sortable="true" 
+                      filterable="false" 
+                      dataType="date" 
+                      styleClass="dateColumn">
+          </app-column>
+          <app-column  
+                      fieldName="note" 
+                      header="Note" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn">
+          </app-column>
+  </app-data-table>
+        
+
+<app-edit-dialog [type]="'notes'"></app-edit-dialog>
+<app-confirm-dialog [type]="'notes'"></app-confirm-dialog>

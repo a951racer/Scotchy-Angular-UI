@@ -1,0 +1,28 @@
+<div id="wishlists" [ngClass]="'tab'" style="display: none">
+  <app-data-table 
+                dataSetName="wishlists" 
+                [dataset]="wishlists" 
+                pageSize="6" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="false" 
+                deleteButton="true" 
+                filterButton="true"
+                (newItem)="addWishlist($event)"
+                (editItem)="editWishlist($event)"
+                (deleteItem)="confirmDeleteWishlist($event)"
+                (doNavigate)="navigate($event)">
+          <app-column  
+                      fieldName="wishListName" 
+                      header="Wishlists" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn"
+                      navLink="/wishlists"
+                      navId="wishListName">
+          </app-column>
+  </app-data-table>
+
+<app-edit-dialog [type]="'wishlists'"></app-edit-dialog>
+<app-confirm-dialog [type]="'wishlists'"></app-confirm-dialog>

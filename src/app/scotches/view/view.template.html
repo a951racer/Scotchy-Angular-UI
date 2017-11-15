@@ -25,7 +25,6 @@
   </div>
   
   <!-- Details -->
-<!--  <div [ngClass]="'scotch-detail-comment'"> -->
     <div [ngClass]="'scotchDetails'">
       <div [ngClass]="'row'">
         <div [ngClass]="'scotch-detail-label'">Style:</div>
@@ -44,138 +43,62 @@
           <div [ngClass]="'scotch-detail-comment-data'">{{scotch.comment}}</div>
       </div>
     </div>
-<!--  </div>  -->
   
     <div [ngClass]="'tabBar'">
       <a id="notesButton" [ngClass]="'tabButton _activeTab'" (click)="openTab('notes')">Notes</a>
       <a id="tastingsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('tastings')">My Tasting Notes</a>
       <a id="thirdPartyTastingsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('thirdPartyTastings')">3rd Party Tasting Notes</a>
       <a id="wishlistsButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('wishlists')">Wish Lists</a>
+      <a id="pricesButton" [ngClass]="'tabButton _inactiveTab'" (click)="openTab('prices')">Price List</a>
     </div>
 
     <div [ngClass]="'tabContainer'">
-        
-    <!-- NOTES  -->
-      <div id="notes" [ngClass]="'tab'" style="display: block">
-        <!-- <div [ngClass]="'section-label'">Notes</div> -->
-        <div>
-          <button [ngClass]="'button'" (click)="addNote()"><i class="fa fa-plus"></i> Add</button>
-        </div>
-        <br>
-        <div>
-          <table>
-            <tr>
-              <th [ngClass]="'dateColumn'">Date</th> 
-              <th>Note</th>
-              <th [ngClass]="'editButtomColumn'"></th>
-            </tr>
-            <tr *ngFor="let note of notes">
-              <td [ngClass]="'dateColumn'">{{note.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-              <td>{{note.note}}</td>
-              <td [ngClass]="'editButtomColumn'">
-                <button [ngClass]="'button'" (click)="editNote(note)"><i class="fa fa-pencil"></i> Edit</button>
-                <button [ngClass]="'button'" (click)="confirmDeleteNote(note)"><i class="fa fa-times"></i> Delete</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-    </div>
-
+      
+    <!-- Notes Table -->
+      <app-notes-table 
+          [notes]="notes" 
+          [scotch]="scotch" 
+          (refreshNeeded)="fetchScotch($event)"
+          *ngIf="dataLoaded">
+      </app-notes-table>
+      
     <!-- Tastings  -->
-    <div id="tastings" [ngClass]="'tab'" style="display: none">
-      <!-- <div [ngClass]="'section-label'">Tastings</div> -->
-      <div>
-        <button [ngClass]="'button'" (click)="addTasting(false)"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-    <table>
-      <tr>
-	    <th [ngClass]="'openColumn'"></th>
-        <th [ngClass]="'dateColumn'">Date</th> 
-        <th>Location</th>
-        <th [ngClass]="'ratingColumn'">Rating</th>
-        <th [ngClass]="'tastingColumn'">Nose</th>
-        <th [ngClass]="'tastingColumn'">Palate</th>
-        <th [ngClass]="'tastingColumn'">Finish</th>
-        <th [ngClass]="'tastingColumn'">Comment</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-      </tr>
-      <tr *ngFor="let tasting of personalTastings">
-		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showTastingDetails(tasting)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'dateColumn'">{{tasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-        <td>{{tasting.location}}</td>
-        <td [ngClass]="'ratingColumn'">
-          <app-rating-star [rating]="tasting.rating ? tasting.rating : 0"></app-rating-star>
-        </td>
-        <td [ngClass]="'tastingColumn'">{{tasting.nose}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.palate}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.finish}}</td>
-        <td [ngClass]="'tastingColumn'">{{tasting.comment}}</td>
-        <td [ngClass]="'editButtomColumn'">
-          <button [ngClass]="'button'" (click)="editTasting(tasting)"><i class="fa fa-pencil"></i> Edit</button>
-          <button [ngClass]="'button'" (click)="confirmDeleteTasting(tasting)"><i class="fa fa-times"></i> Delete</button>
-        </td>
-      </tr>
-    </table>
-    </div>
+      <app-tastings-table 
+          [personalTastings]="personalTastings" 
+          [scotch]="scotch" 
+          (refreshNeeded)="fetchScotch($event)"
+          *ngIf="dataLoaded">
+      </app-tastings-table>
+
       
     <!-- Third Party Tastings  -->
-    <div id="thirdPartyTastings" [ngClass]="'tab'" style="display: none">
-      <div>
-        <button [ngClass]="'button'" (click)="addTasting(true)"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-    <table>
-      <tr>
-	    <th [ngClass]="'openColumn'"></th>
-        <th [ngClass]="'dateColumn'">Date</th> 
-        <th>Source</th>
-        <th [ngClass]="'tastingColumn'">Nose</th>
-        <th [ngClass]="'tastingColumn'">Palate</th>
-        <th [ngClass]="'tastingColumn'">Finish</th>
-        <th [ngClass]="'tastingColumn'">Comment</th>
-        <th [ngClass]="'editButtomColumn'"></th>
-      </tr>
-      <tr *ngFor="let thirdPartyTasting of thirdPartyTastings">
-		<td [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="showTastingDetails(thirdPartyTasting)"><i class="fa fa-folder-open-o"></i></button></td>
-        <td [ngClass]="'dateColumn'">{{thirdPartyTasting.dateAdded | utcDate | date:'MM/dd/yyyy'}}</td>
-        <td>{{thirdPartyTasting.location}}</td>
-        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.nose}}</td>
-        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.palate}}</td>
-        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.finish}}</td>
-        <td [ngClass]="'tastingColumn'">{{thirdPartyTasting.comment}}</td>
-        <td [ngClass]="'editButtomColumn'">
-          <button [ngClass]="'button'" (click)="editTasting(thirdPartyTasting)"><i class="fa fa-pencil"></i> Edit</button>
-          <button [ngClass]="'button'" (click)="confirmDeleteTasting(thirdPartyTasting)"><i class="fa fa-times"></i> Delete</button>
-        </td>
-      </tr>
-    </table>
-    </div>
+      <app-third-tastings-table 
+          [thirdPartyTastings]="thirdPartyTastings" 
+          [scotch]="scotch" 
+          (refreshNeeded)="fetchScotch($event)"
+          *ngIf="dataLoaded">
+    </app-third-tastings-table>
 
     <!-- Wishlists  -->
-    <div id="wishlists" [ngClass]="'tab'" style="display: none">
-      <!-- <div [ngClass]="'section-label'">Wishlists</div> -->
-      <div>
-        <button [ngClass]="'button'" (click)="addWishlist()"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-      <table>
-        <tr>
-          <th>Wishlist</th>
-          <th [ngClass]="'editButtomColumn'"></th>
-        </tr>
-        <tr *ngFor="let wishlist of wishlists">
-          <td><a (click)="goToWishlist(wishlist)">{{wishlist}}</a></td>
-          <td [ngClass]="'editButtomColumn'">
-            <button [ngClass]="'button'" (click)="confirmDeleteWishlist(wishlist)"><i class="fa fa-times"></i> Delete</button>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <app-wishlists-table
+          [wishlists]="wishlists" 
+          [scotch]="scotch" 
+          (refreshNeeded)="fetchScotch($event)" 
+          *ngIf="dataLoaded">
+    </app-wishlists-table>
+
+      <!-- Prices Table -->
+      <app-prices-table
+          [prices]="prices" 
+          [scotch]="scotch" 
+          (refreshNeeded)="fetchScotch($event)"
+          *ngIf="dataLoaded">
+      </app-prices-table>
+      
   </div> <!-- tabContainer  -->
 </div>
 <app-footer></app-footer>
 
 
-<app-edit-dialog></app-edit-dialog>
-<app-confirm-dialog></app-confirm-dialog>
+<app-edit-dialog [type]="scotch"></app-edit-dialog>
+<app-confirm-dialog [type]="scotch"></app-confirm-dialog>

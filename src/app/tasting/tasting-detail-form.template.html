@@ -1,6 +1,6 @@
 <div [ngClass]="'formRow'">
   <div><label for="dateAdded" [ngClass]="'formLabel'">Date: </label>
-    <span>{{tasting.dateAdded | utcDate | date: 'MM/dd/yyyy'}}</span>
+    <span>{{tasting.dateAddedPretty}}</span>
   </div>
 </div>
 <div [ngClass]="'formRow'">

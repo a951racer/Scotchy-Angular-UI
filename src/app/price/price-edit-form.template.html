@@ -1,0 +1,32 @@
+<div [ngClass]="'formRow'">
+    <div><label for="dateAdded" [ngClass]="'formLabel'">Date:</label></div>
+    <div><input type="date" id="dateAdded" [(ngModel)]="price.dateAdded"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="location" [ngClass]="'formLabel'">Location:</label></div>
+    <div><input type="text" id="location" [(ngModel)]="price.location"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="size" [ngClass]="'formLabel'">Size:</label></div>
+    <div><input type="text" id="size" [(ngModel)]="price.size"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="price" [ngClass]="'formLabel'">Price:</label></div>
+    <div><input type="number" id="price" [(ngModel)]="price.price"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="tax" [ngClass]="'formLabel'">Tax:</label></div>
+    <div><input type="number" id="tax" [(ngModel)]="price.tax"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="shipping" [ngClass]="'formLabel'">Shipping:</label></div>
+    <div><input type="number" id="shipping" [(ngModel)]="price.shipping"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="total" [ngClass]="'formLabel'">Total:</label></div>
+    <div><input type="number" id="total" [(ngModel)]="price.total"></div>
+</div>
+<div [ngClass]="'formRow'">
+    <div><label for="comment" [ngClass]="'formLabel'">Comment:</label></div>
+    <div><textarea id="comment" [(ngModel)]="price.comment" rows="3" cols="35"></textarea></div>
+</div>
