@@ -92,7 +92,7 @@ export class ViewComponent implements OnInit, OnDestroy {
         this.title = scotch.dramName;
         this.notes = scotch.notes;
         this.tastings = scotch.tastings;
-        this.personalTastings = this.tastings.filter(tasting => !tasting.thirdParty);
+        this.personalTastings = this.tastings.filter(tasting => tasting.personal);
         this.thirdPartyTastings = this.tastings.filter(tasting => tasting.thirdParty);
         this.prices = scotch.prices;
         this.wishlists = [];

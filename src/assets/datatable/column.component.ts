@@ -13,6 +13,8 @@ export class ColumnComponent {
   @Input() dataType;
   @Input() styleClass;
   @Input() displayAs;
+  @Input() navLink;
+  @Input() navId;
 
   constructor(table: DatatableComponent) {
     table.addColumn(this);

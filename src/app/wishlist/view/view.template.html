@@ -1,44 +1,48 @@
 <app-page-header [title]="title" [subtitle]="subtitle"></app-page-header>
+
 <div *ngIf="wishlist">
   <div [ngClass]="'editIcon'">
     <i class="fa fa-pencil" (click)="editWishlist(wishlist)"></i>
-  </div>
-  
-  <!-- Details -->
-  <div [ngClass]="'wishlistDetails'">
-    <div [ngClass]="'row'">
-      <div [ngClass]="'wishlist-detail-label'">Name:</div>
-      <div [ngClass]="'wishlist-detail-data'">{{wishlist.wishListName}}</div>
-    </div>
-    <div [ngClass]="'row'">
-      <div [ngClass]="'wishlist-detail-label'">Description:</div>
-      <div [ngClass]="'wishlist-detail-data'">{{wishlist.description}}</div>
-    </div>
-
-    <!-- Scotches  -->
-    <div [ngClass]="'wishlistDetailNotes'">
-      <div [ngClass]="'section-label'">Scotches</div>
-      <div>
-        <button [ngClass]="'button'" (click)="addScotch()"><i class="fa fa-plus"></i> Add</button>
-      </div>
-      <br>
-      <div>
-        <table>
-          <tr>
-            <th>Scotch</th>
-            <th [ngClass]="'editButtomColumn'"></th>
-          </tr>
-          <tr *ngFor="let scotch of scotches">
-            <td><a [routerLink]="['/scotches', scotch._id]">{{scotch.dramName}}</a></td>
-            <td [ngClass]="'editButtomColumn'">
-              <button [ngClass]="'button'" (click)="confirmDeleteScotch(scotch)"><i class="fa fa-times"></i> Delete</button>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  </div>
 </div>
+
+<!-- Details -->
+<div [ngClass]="'wishlistDetails'">
+  <div [ngClass]="'row'">
+    <div [ngClass]="'wishlist-detail-label'">Name:</div>
+    <div [ngClass]="'wishlist-detail-data'">{{wishlist.wishListName}}</div>
+  </div>
+  <div [ngClass]="'row'">
+    <div [ngClass]="'wishlist-detail-label'">Description:</div>
+    <div [ngClass]="'wishlist-detail-data'">{{wishlist.description}}</div>
+  </div>
+
+<div [ngClass]="'wishlistDetailNotes'">
+  <div [ngClass]="'section-label'">Scotches</div>
+
+  <app-data-table 
+                dataSetName="scotches" 
+                [dataset]="scotches" 
+                pageSize="6" 
+                detailsButton="false" 
+                newButton="true"
+                editButton="false" 
+                deleteButton="true" 
+                filterButton="true"
+                (newItem)="addScotch($event)"
+                (deleteItem)="confirmDeleteScotch($event)"
+                (doNavigate)="navigate($event)">
+          <app-column  
+                      fieldName="dramName" 
+                      header="Dram" 
+                      sortable="true" 
+                      filterable="true" 
+                      dataType="text" 
+                      styleClass="textColumn"
+                      navLink="/scotches"
+                      navId="_id">
+          </app-column>
+  </app-data-table>
+  
 <app-footer></app-footer>
 
 

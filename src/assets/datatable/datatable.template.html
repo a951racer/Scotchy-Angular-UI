@@ -44,10 +44,13 @@
 
             <ng-template #booleanBlock><span *ngIf="column.displayAs === 'check-box'; then checkboxBlock; else textBlock"></span></ng-template>
             <ng-template #numericBlock><span *ngIf="column.displayAs === 'rating'; then ratingBlock; else textBlock"></span></ng-template>
-            <ng-template #textBlock>{{row[column.fieldName]}}</ng-template>            
+            <ng-template #textBlock><span *ngIf="!column.navLink || column.navLink === ''; then textNoLinkBlock; else textLinkBlock"></span></ng-template>
+            <ng-template #textLinkBlock><a (click)="navigate(column.navLink, row[column.navId])">{{row[column.fieldName]}}</a></ng-template>            
+            <ng-template #textNoLinkBlock>{{row[column.fieldName]}}</ng-template>
             <ng-template #dateBlock>{{row[column.fieldName] | utcDate | date:'MM/dd/yyyy'}}</ng-template>
             <ng-template #currencyBlock>{{row[column.fieldName] | currency:USD:'symbol'}}</ng-template>
-            <ng-template #ratingBlock><app-rating-star [rating]="row[column.fieldName] ? row[column.fieldName] : 0"></app-rating-star></ng-template>
+            <ng-template #ratingBlock><span *ngIf="(row[column.fieldName] ? row[column.fieldName] : 0) > 0; then starsBlock"></span></ng-template>
+            <ng-template #starsBlock><app-rating-star [rating]="row[column.fieldName] ? row[column.fieldName] : 0"></app-rating-star></ng-template>
             <ng-template #checkboxBlock><span *ngIf="row[column.fieldName]" [ngClass]="'check-mark'"><i class="fa fa-check"></i></span></ng-template>
           </div>
         </td>
@@ -61,10 +64,11 @@
 </div>  
   
 <div>
-  <div [ngClass]="'pageCounter'">
+<!--  <div [ngClass]="'pageCounter'">
     <label>Page {{currentIndex}} of {{numberOfPages}}</label>
   </div>
-  <div>
+-->
+  <div [ngClass]="'paginator'">
     <div [ngClass]="'pagination'">
       <a [ngClass]="{'disabled': (currentIndex == 1)}" (click)="prevPage()"><i class="fa fa-angle-double-left"></i></a>
       <a *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}" (click)="setPage(page)">{{page}}</a>

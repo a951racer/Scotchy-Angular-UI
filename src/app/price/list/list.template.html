@@ -10,7 +10,8 @@
                 filterButton="true"
                 (showDetails)="showDetails($event)" 
                 (editItem)="editPrice($event)"
-                (deleteItem)="confirmDeletePrice($event)">
+                (deleteItem)="confirmDeletePrice($event)"
+                (doNavigate)="navigate($event)">
           <app-column  
                       fieldName="dateAdded" 
                       header="Date" 
@@ -25,7 +26,9 @@
                       sortable="true" 
                       filterable="true" 
                       dataType="text" 
-                      styleClass="textColumn">
+                      styleClass="textColumn"
+                      navLink="/scotches"
+                      navId="scotchId">
           </app-column>
           <app-column  
                       fieldName="location" 

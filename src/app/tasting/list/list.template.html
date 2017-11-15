@@ -13,9 +13,10 @@
        (showDetails)="showDetails($event)" 
        (addItem)="addTasting($event)"
        (editItem)="editTasting($event)"
-       (deleteItem)="confirmDeleteTasting($event)">
+       (deleteItem)="confirmDeleteTasting($event)"
+       (doNavigate)="navigate($event)">
   <app-column  
-              fieldName="dateAdded" 
+              fieldName="dateAddedPretty" 
               header="Date" 
               sortable="true" 
               filterable="false" 
@@ -23,6 +24,25 @@
               styleClass="dateColumn">
   </app-column>
   <app-column  
+              fieldName="dramName" 
+              header="Dram" 
+              sortable="true" 
+              filterable="true" 
+              dataType="text" 
+              styleClass="textColumn"
+              navLink="/scotches"
+              navId="scotchId">
+  </app-column>
+  <app-column  
+              fieldName="personal" 
+              header="Personal" 
+              sortable="true" 
+              filterable="true" 
+              dataType="boolean" 
+              displayAs="check-box"
+              styleClass="checkboxColumn">
+  </app-column> 
+<!--  <app-column  
               fieldName="thirdParty" 
               header="3rd Party" 
               sortable="true" 
@@ -31,7 +51,7 @@
               displayAs="check-box"
               styleClass="checkboxColumn">
   </app-column>
-
+-->
   <app-column  
               fieldName="rating" 
               header="Rating" 
@@ -68,14 +88,6 @@
   <app-column  
               fieldName="comment" 
               header="Comment" 
-              sortable="true" 
-              filterable="true" 
-              dataType="text" 
-              styleClass="textColumn">
-  </app-column>
-  <app-column  
-              fieldName="dramName" 
-              header="Dram" 
               sortable="true" 
               filterable="true" 
               dataType="text" 

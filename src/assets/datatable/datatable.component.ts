@@ -23,6 +23,7 @@ export class DatatableComponent implements OnChanges {
   @Output() editItem: EventEmitter<string> = new EventEmitter();
   @Output() deleteItem: EventEmitter<string> = new EventEmitter();
   @Output() showDetails: EventEmitter<string> = new EventEmitter();
+  @Output() doNavigate: EventEmitter<any> = new EventEmitter();
 
   columns: ColumnComponent[] = [];
   showFilters = false;
@@ -221,5 +222,12 @@ export class DatatableComponent implements OnChanges {
 
   details(item: any) {
     this.showDetails.emit(item);
+  }
+
+  navigate(link: any, id: string) {
+    const linkObject = new Object();
+    linkObject['link'] = link;
+    linkObject['id'] = id;
+    this.doNavigate.emit(linkObject);
   }
 }

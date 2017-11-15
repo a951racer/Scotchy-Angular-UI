@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter } 
 import { ConfirmDialogService } from '../../../../assets/partials/confirm-dialog/confirm-dialog.service';
 import { EditDialogService } from '../../../../assets/partials/edit-dialog/edit-dialog.service';
 import { ScotchesService } from '../../scotches.service';
+import { WishlistsService } from '../../../wishlist/wishlists.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-wishlists-table',
@@ -10,6 +12,7 @@ import { ScotchesService } from '../../scotches.service';
    providers: [
      ConfirmDialogService,
      EditDialogService,
+     WishlistsService
    ]
 })
 
@@ -30,7 +33,9 @@ export class WishlistsTableComponent implements OnInit {
   prompt: string;
 
 
-  constructor(private _scotchesService: ScotchesService,
+  constructor(private _router: Router,
+              private _scotchesService: ScotchesService,
+              private _wishlistsService: WishlistsService,
               private _editDialogService: EditDialogService,
               private _confirmDialogService: ConfirmDialogService) {}
 
@@ -104,5 +109,11 @@ export class WishlistsTableComponent implements OnInit {
       clonedWishlist[prop] = n[prop];
     }
     return clonedWishlist;
+  }
+
+  navigate(link: any) {
+    this._wishlistsService.getWishlistId(link.id).subscribe(wishlistId => {
+      this._router.navigate([link.link, wishlistId._id]);
+    });
   }
 }

@@ -145,4 +145,8 @@ export class ListComponent implements OnInit {
                                             doLaunch: true});
 
   }
+
+  navigate(link: any) {
+    this._router.navigate([link.link, link.id]);
+  }
 }

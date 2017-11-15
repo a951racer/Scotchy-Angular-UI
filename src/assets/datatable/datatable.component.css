@@ -27,13 +27,13 @@
 
 .ratingColumn {
   text-align: center;
+  width: 90px;
 }
 
 .openColumn {
   text-align: center;
   width: 40px;
 }
-
 
 .editColumn {
   width: 150px;

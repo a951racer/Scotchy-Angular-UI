@@ -5,7 +5,7 @@
   font-size: 120%;
   font-weight: bold;
   margin: 20px 5px;
-  color: darkolivegreen;
+  color: #003804;
 }
 
 .pagination {
@@ -29,12 +29,16 @@
 }
 
 .pagination a.disabled {
-  color: lightgray;
-  border-color: lightgray;
+  color: #aabf84;
+  border-color: #aabf84;
 }
 
 .pagination a:hover:not(.active):not(.disabled) {
   background-color: #003804;
   color: white;
   cursor: pointer;
+}
+
+.paginator {
+  padding-top: 10px;
 }
