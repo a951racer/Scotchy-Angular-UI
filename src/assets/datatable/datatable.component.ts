@@ -126,7 +126,6 @@ export class DatatableComponent implements OnChanges {
               filter = input.checked;
               if (filter) {
                 const searchDomain = (item[this.columns[x].fieldName] || false);
-                console.log(filter + ' : ' + searchDomain);
                 if (searchDomain !== filter) {
                       show = false;
                 }

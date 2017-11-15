@@ -101,7 +101,7 @@ export class ViewComponent implements OnInit, OnDestroy {
           wl['wishListName'] = scotch.wishLists[x];
           this.wishlists.push(wl);
         }
-        this.allowEdit = (this.user && this.user._id === this.scotch.creator._id);
+        // this.allowEdit = (this.user && this.user._id === this.scotch.creator._id);
         this.dataLoaded = true;
       },
       error => this._router.navigate(['scotches'])
