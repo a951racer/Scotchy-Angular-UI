@@ -4,10 +4,23 @@
     <span class="caption">Angus McScotchy, III</span>
 </div>
 
-<div *ngIf="user">
-  <app-navbar></app-navbar>
+<div *ngIf="user && authenticated">
+  <div [ngClass]="'navbar'">
+    <button type="button" (click)="onClick('Cabinet')" label="Cabinet" [ngClass]="'button'">Cabinet</button>
+    <button type="button" (click)="onClick('Wishlists')" label="Wishlists" [ngClass]="'button'">Wish Lists</button>
+    <button type="button" (click)="onClick('Tastings')" label="Tastings" [ngClass]="'button'">Tastings</button>
+    <button type="button" (click)="onClick('Prices')" label="Price List" [ngClass]="'button'">Price List</button>
+    <button type="button" (click)="signOut()" label="Sign Out" [ngClass]="'button'">Sign out</button>
+  </div>
 </div>
-<div *ngIf="!user">
-  <app-login-navbar></app-login-navbar>
+<div *ngIf="!user || !authenticated">
+  <div [ngClass]="'navbar'">
+      <button (click)="login()" [ngClass]="'button'">Sign In</button>
+      <button (click)="signUp()" [ngClass]="'button'">Sign Up</button>
+  </div>
 </div>
 <app-footer></app-footer>
+
+<app-edit-dialog [type]="'signin'"></app-edit-dialog>
+<app-edit-dialog [type]="'signup'"></app-edit-dialog>
+<app-confirm-dialog [type]="'signout'"></app-confirm-dialog>

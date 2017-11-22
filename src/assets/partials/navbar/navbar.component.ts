@@ -11,6 +11,7 @@ export class NavbarComponent {
   constructor(private router: Router) { }
 
   onClick(buttonName) {
+    console.log(buttonName);
     switch (buttonName) {
       case 'Home': this.router.navigate(['/']);
         break;

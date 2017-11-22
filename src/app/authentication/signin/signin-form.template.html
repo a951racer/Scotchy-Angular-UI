@@ -1,0 +1,8 @@
+<div [ngClass]="'formRow'">
+  <div><label for="userName" [ngClass]="'formLabel'">Username:</label></div>
+  <div><input type="text" id="userName" [(ngModel)]="user.username"></div>
+</div> <!-- end date added -->
+<div [ngClass]="'formRow'">
+  <div><label for="password" [ngClass]="'formLabel'">Password:</label></div>
+  <div><input type="password" id="password" [(ngModel)]="user.password"></div>
+</div>
