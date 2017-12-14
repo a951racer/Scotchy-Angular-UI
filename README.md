@@ -4,6 +4,8 @@
 Your host and mascot:<br><br>
 <img src="screenshots/angus.png">
 
+Example app:  http://52.33.10.249:8080
+
 This is my first attempt at building a MEAN app.  I took up scotch as a hobby about the same time I started learning the MEAN stack. Worlds collided and this is the result.
 
 Technically, this is really a MEN app as I haven't Angular-i-fied it yet.  The font-end is strictly EJS. Stay tuned for a new Angular version!
