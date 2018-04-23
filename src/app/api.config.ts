@@ -1,5 +1,5 @@
 export const apiConfig = {
-  apiUrl: 'http://localhost:4700/api',
+  apiUrl: 'http://localhost:5700/api',
   signinURL: '/auth/signin',
   signupURL: '/auth/signup',
   signoutURL: '/auth/signout',
