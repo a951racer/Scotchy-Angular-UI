@@ -1,0 +1,20 @@
+<div [ngClass]="'formRow'">
+  <div><label for="firstName" [ngClass]="'formLabel'">First Name:</label></div>
+  <div><input type="text" id="firstName" [(ngModel)]="user.firstName"></div>
+</div>
+<div [ngClass]="'formRow'">
+  <div><label for="lastName" [ngClass]="'formLabel'">Last Name:</label></div>
+  <div><input type="text" id="lastName" [(ngModel)]="user.lastName"></div>
+</div>
+<div [ngClass]="'formRow'">
+  <div><label for="email" [ngClass]="'formLabel'">Email:</label></div>
+  <div><input type="text" id="emai9l" [(ngModel)]="user.email"></div>
+</div>
+<div [ngClass]="'formRow'">
+  <div><label for="userName" [ngClass]="'formLabel'">Username:</label></div>
+  <div><input type="text" id="userName" [(ngModel)]="user.username"></div>
+</div>
+<div [ngClass]="'formRow'">
+  <div><label for="password" [ngClass]="'formLabel'">Password:</label></div>
+  <div><input type="password" id="password" [(ngModel)]="user.password"></div>
+</div>

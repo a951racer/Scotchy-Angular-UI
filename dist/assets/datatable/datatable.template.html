@@ -1,0 +1,117 @@
+<!-- Filter toggle button -->
+<div style="margin: 10px">
+  <span *ngIf="newButton === 'true'"><button [ngClass]="'button'" (click)="new()"><i class="fa fa-plus"></i> New</button></span>
+  <span *ngIf="filterButton === 'true'"><button [ngClass]="'button'" (click)="toggleFilterRow()"><i class="fa fa-filter"></i> Filter</button></span>
+</div>
+
+<!-- Header row -->
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th *ngIf="detailsButton === 'true'" [ngClass]="'openColumn'"></th>
+        <th *ngFor="let column of columns"  [ngClass]="column.styleClass" (click)="sortTable(column.sortable, column.fieldName, column.dataType)">{{column.header}}
+          <span *ngIf="column.sortable ==='true'"> <i class="fa fa-sort"></i></span>
+        </th>
+        <th *ngIf="editButton === 'true' || deleteButton === 'true'" [ngClass]="'editColumn'"></th>
+      </tr>
+    </thead>
+    <tbody>
+    
+    <!-- Filter input row -->
+      <tr [ngClass]="'filterRow'" *ngIf="showFilters">
+        <td *ngIf="detailsButton === 'true'" [ngClass]="'openColumn'" style="color: white; font-weight: light"><i class="fa fa-filter"></i></td>
+        <td *ngFor="let column of columns" (keyup)="filterTable()">
+          <div *ngIf="column.filterable === 'true'" [ngClass]="column.styleClass" >
+            <span *ngIf="column.dataType === 'boolean'; then checkboxInput; else textInput"></span>
+            <ng-template #textInput><input type="text" [id]="column.fieldName + 'Filter'" (keyup)="filterTable()" size="10"></ng-template>
+            <ng-template #checkboxInput><input type="checkbox" [id]="column.fieldName + 'Filter'" (click)="filterTable()"></ng-template>
+          </div>
+        </td>
+        <td *ngIf="editButton === 'true' || deleteButton === 'true'"></td>
+      </tr>
+    
+    <!-- Data -->
+      <tr *ngFor="let row of displayedData">
+		<td *ngIf="detailsButton === 'true'" [ngClass]="'openColumn'"><button [ngClass]="'button'" (click)="details(row)"><i class="fa fa-folder-open-o"></i></button></td>
+        <td *ngFor="let column of columns">
+          <div [ngClass]="column.styleClass">
+            <span *ngIf="column.dataType === 'currency'; then currencyBlock"></span>
+            <span *ngIf="column.dataType === 'date'; then dateBlock"></span>
+            <span *ngIf="column.dataType === 'text'; then textBlock"></span>
+            <span *ngIf="column.dataType === 'numeric'; then numericBlock"></span>
+            <span *ngIf="column.dataType === 'boolean'; then booleanBlock"></span>
+
+            <ng-template #booleanBlock><span *ngIf="column.displayAs === 'check-box'; then checkboxBlock; else textBlock"></span></ng-template>
+            <ng-template #numericBlock><span *ngIf="column.displayAs === 'rating'; then ratingBlock; else textBlock"></span></ng-template>
+            <ng-template #textBlock><span *ngIf="!column.navLink || column.navLink === ''; then textNoLinkBlock; else textLinkBlock"></span></ng-template>
+            <ng-template #textLinkBlock><a (click)="navigate(column.navLink, row[column.navId])">{{row[column.fieldName]}}</a></ng-template>            
+            <ng-template #textNoLinkBlock>{{row[column.fieldName]}}</ng-template>
+            <ng-template #dateBlock>{{row[column.fieldName] | utcDate | date:'MM/dd/yyyy'}}</ng-template>
+            <ng-template #currencyBlock>{{row[column.fieldName] | currency:USD:'symbol'}}</ng-template>
+            <ng-template #ratingBlock><span *ngIf="(row[column.fieldName] ? row[column.fieldName] : 0) > 0; then starsBlock"></span></ng-template>
+            <ng-template #starsBlock><app-rating-star [rating]="row[column.fieldName] ? row[column.fieldName] : 0"></app-rating-star></ng-template>
+            <ng-template #checkboxBlock><span *ngIf="row[column.fieldName]" [ngClass]="'check-mark'"><i class="fa fa-check"></i></span></ng-template>
+          </div>
+        </td>
+        <td *ngIf="editButton === 'true' || deleteButton === 'true'" [ngClass]="'editColumn'">
+            <button *ngIf="editButton === 'true'" [ngClass]="'button'" (click)="edit(row)"><i class="fa fa-pencil"></i> Edit</button>
+            <button *ngIf="deleteButton === 'true'" [ngClass]="'button'" (click)="delete(row)"><i class="fa fa-times"></i> Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>  
+  
+<div>
+<!--  <div [ngClass]="'pageCounter'">
+    <label>Page {{currentIndex}} of {{numberOfPages}}</label>
+  </div>
+-->
+  <div [ngClass]="'paginator'">
+    <div [ngClass]="'pagination'">
+      <a [ngClass]="{'disabled': (currentIndex == 1)}" (click)="prevPage()"><i class="fa fa-angle-double-left"></i></a>
+      <a *ngFor="let page of pagesIndex"  [ngClass]="{'active': (currentIndex == page)}" (click)="setPage(page)">{{page}}</a>
+      <a [ngClass]="{'disabled': (currentIndex == numberOfPages)}" (click)="nextPage()"><i class="fa fa-angle-double-right"></i></a>
+    </div>
+  </div>
+</div>
+
+
+
+<!--
+
+            <tr>
+        <th [ngClass]="'dateColumn'" (click)="sortTable('dateAdded')">Date <i class="fa fa-sort"></i></th> 
+        <th [ngClass]="'locationColumn'" (click)="sortTable('location')">Location <i class="fa fa-sort"></i></th> 
+        <th [ngClass]="'sizeColumn'" (click)="sortTable('size')">Size <i class="fa fa-sort"></i></th> 
+        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('price')">Price <i class="fa fa-sort"></i></th>
+        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('tax')">Tax <i class="fa fa-sort"></i></th>
+        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('shipping')">Shipping <i class="fa fa-sort"></i></th>
+        <th [ngClass]="'currencyColumn'" (click)="sortTableNumeric('total')">Total <i class="fa fa-sort"></i></th>
+        <th [ngClass]="'commentColumn'">Comment</th>
+        <th>Dram <i class="fa fa-sort"></i></th>
+        <!-- <th [ngClass]="'editButtomColumn'"></th>
+      </tr>
+      <tr [ngClass]="'filterRow'" *ngIf="showFilters">
+        <td [ngClass]="'dateColumn'" style="color: white; font-weight: light"><i class="fa fa-filter"></i></td>
+        <td [ngClass]="'locationColumn'">
+          <input type="text" id="locationFilter" (keyup)="filterTable()" size="15">
+        </td>
+        <td [ngClass]="'sizeColumn'">
+          <input type="text" id="sizeFilter" (keyup)="filterTable()" size="5">
+        </td>
+        <td [ngClass]="'currencyColumn'"></td>
+        <td [ngClass]="'currencyColumn'"></td>
+        <td [ngClass]="'currencyColumn'"></td>
+        <td [ngClass]="'currencyColumn'"></td>
+        <td [ngClass]="'commentColumn'">
+          <input type="text" id="commentFilter" (keyup)="filterTable()" size="15" >
+        </td>
+        <td>
+          <input type="text" id="dramFilter" (keyup)="filterTable()" size="15" >
+        </td>
+        <!-- <td [ngClass]="'editColumn'"></td> 
+      </tr>
+
+-->

@@ -22,8 +22,8 @@ import { WishlistEditFormComponent } from '../../app/wishlist/edit/wishlist-edit
 import { WishlistSelectFormComponent } from '../../app/wishlist/wishlist-select-form.component';
 import { PriceEditFormComponent } from '../../app/price/price-edit-form.component';
 import { ScotchSelectFormComponent } from '../../app/scotches/scotch-select-form-component';
-// import { SigninComponent } from '../../app/authentication/signin/signin.component';
-// import { SignupComponent } from '../../app/authentication/signup/signup.component';
+import { SigninFormComponent } from '../../app/authentication/signin/signin-form.component';
+import { SignupFormComponent } from '../../app/authentication/signup/signup-form.component';
 import { StyleEditFormComponent } from '../../app/lookup/edit/style-edit.form.component';
 import { RegionEditFormComponent } from '../../app/lookup/edit/region-edit.form.component';
 import { UtcDatePipe } from '../../helpers/utcDate.pipe';
@@ -55,9 +55,9 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     ScotchSelectFormComponent,
     StyleEditFormComponent,
     RegionEditFormComponent,
-    UtcDatePipe
-    // SigninComponent,
-    // SignupComponent
+    UtcDatePipe,
+    SigninFormComponent,
+    SignupFormComponent
   ],
   exports: [
     FooterComponent,
@@ -82,8 +82,8 @@ import { UtcDatePipe } from '../../helpers/utcDate.pipe';
     StyleEditFormComponent,
     RegionEditFormComponent,
     UtcDatePipe,
-    // SigninComponent,
-    // SignupComponent,
+    SigninFormComponent,
+    SignupFormComponent,
     RouterModule
   ],
 })

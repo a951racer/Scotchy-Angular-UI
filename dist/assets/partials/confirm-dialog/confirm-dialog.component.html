@@ -1,0 +1,26 @@
+<!-- Confirmation Dialog -->
+
+<div [id]="'confirmationDialog' + type" [ngClass]="'edit-dialog'">
+  <div [ngClass]="'edit-dialog-content'">
+    <div [ngClass]="'dialog-header'">
+      <span>{{dialogTitle}}</span>
+      <button (click)="close(false)"[ngClass]="'close'">&times;</button>
+    </div>
+    
+    <div [ngClass]="'edit-dialog-body'">
+      <div [ngClass]="'confirmationPrompt'">
+        <i class="fa fa-question-circle"></i><span> {{dialogPrompt}}</span>
+      </div>
+    </div>
+
+    <div [ngClass]="'edit-dialog-footer'">    
+      <div [ngClass]="'edit-dialog-footer'">
+        <hr>
+        <div>
+          <button (click)="close(true)" label="Yes" [ngClass]="'button'"><i class="fa fa-check"></i> Yes</button>
+          <button (click)="close(false)" label="No" [ngClass]="'button'"><i class="fa fa-times"></i> No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
