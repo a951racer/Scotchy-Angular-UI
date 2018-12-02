@@ -1,5 +1,5 @@
 export const apiConfig = {
-  apiUrl: 'http://localhost:5700/api',
+  apiUrl: 'https://scotchy-api.herokuapp.com/api',
   signinURL: '/auth/signin',
   signupURL: '/auth/signup',
   signoutURL: '/auth/signout',
