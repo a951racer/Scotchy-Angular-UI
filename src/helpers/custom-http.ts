@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { ConnectionBackend, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Http, Headers } from '@angular/http';
 import { apiConfig } from '../app/api.config';
 
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
+// import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
+
+
+
 
 @Injectable()
 export class CustomHttp extends Http {
@@ -14,21 +16,25 @@ export class CustomHttp extends Http {
     }
 
     get(url: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.get(apiConfig.apiUrl + url, this.addJwt(options)).catch(this.handleError);
+        return super.get(apiConfig.apiUrl + url, this.addJwt(options))
+        .pipe(catchError(this.handleError));
     }
 
     post(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.post(apiConfig.apiUrl + url, body, this.addJwt(options)).catch(this.handleError);
+        return super.post(apiConfig.apiUrl + url, body, this.addJwt(options))
+        .pipe(catchError(this.handleError));
     }
 
     put(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
-        return super.put(apiConfig.apiUrl + url, body, this.addJwt(options)).catch(this.handleError);
+        return super.put(apiConfig.apiUrl + url, body, this.addJwt(options))
+        .pipe(catchError(this.handleError));
     }
 
     delete(url: string, body: string, options?: RequestOptionsArgs): Observable<Response> {
         const deleteOptions = this.addJwt(options);
         deleteOptions.body = body;
-        return super.delete(apiConfig.apiUrl + url, deleteOptions).catch(this.handleError);
+        return super.delete(apiConfig.apiUrl + url, deleteOptions)
+        .pipe(catchError(this.handleError));
     }
 
     // private helper methods
@@ -53,7 +59,7 @@ export class CustomHttp extends Http {
             window.location.href = '/login';
         }
 
-        return Observable.throw(error._body);
+        return throwError(error._body);
     }
 }
 

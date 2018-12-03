@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
-import { NgModel } from '@angular/forms';
+// import { NgModel } from '@angular/forms';
 import { EditDialogService } from './edit-dialog.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-edit-dialog',

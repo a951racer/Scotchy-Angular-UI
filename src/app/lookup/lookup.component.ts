@@ -3,7 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { StylesService } from './styles.service';
 import { RegionsService } from './regions.service';
-import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 // import { ConfirmDialog } from '../../../assets/partials/confirm-dialog/confirm-dialog.component';
 import { ConfirmDialogService } from '../../assets/partials/confirm-dialog/confirm-dialog.service';
 import { EditDialogService } from '../../assets/partials/edit-dialog/edit-dialog.service';

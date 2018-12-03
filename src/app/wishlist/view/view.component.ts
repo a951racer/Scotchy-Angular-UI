@@ -1,9 +1,9 @@
-import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../../authentication/authentication.service';
 import { WishlistsService } from '../wishlists.service';
 import { ScotchesService } from '../../scotches/scotches.service';
-import { DatePipe } from '@angular/common';
+// import { DatePipe } from '@angular/common';
 import { ConfirmDialogService } from '../../../assets/partials/confirm-dialog/confirm-dialog.service';
 import { EditDialogService } from '../../../assets/partials/edit-dialog/edit-dialog.service';
 

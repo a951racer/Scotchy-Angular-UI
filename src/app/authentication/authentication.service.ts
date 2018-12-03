@@ -1,7 +1,8 @@
-import 'rxjs/Rx';
+// import 'rxjs/Rx';
 import { Injectable } from '@angular/core';
-import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
 import { apiConfig } from '../api.config';
 
 @Injectable()
@@ -13,7 +14,7 @@ export class AuthenticationService {
   private _signupURL = apiConfig.signupURL;
   private _signoutURL = apiConfig.signoutURL;
 
-  constructor (private http: Http) {
+  constructor (private http: HttpClient) {
   }
 
   isLoggedIn(): boolean {
@@ -22,36 +23,35 @@ export class AuthenticationService {
 
   signin(credentials: any): Observable<any> {
     const body = JSON.stringify(credentials);
-    const headers = new Headers({ 'Content-Type': 'application/json',
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json',
                                'Access-Control-Allow-Origin': '*',
                                'Access-Control-Allow-Heades': 'Origin, X-Requested-With, Content-Type, Accept'});
-    const options = new RequestOptions({ 'headers': headers });
+    const options = { 'headers': headers };
     return this.http.post(this._signinURL, body, options)
-      .map(res => this.user = res.json())
-      .catch(this.handleError);
+      // .map(res => this.user = res.json())
+      .pipe(
+        catchError(this.handleError));
   }
 
   signup(user: any): Observable<any> {
     const body = JSON.stringify(user);
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers: headers };
     return this.http.post(this._signupURL, body, options)
-      .map(res => this.user = res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   signout(): Observable<any> {
     // const body = JSON.stringify(user);
-    const headers = new Headers({ 'Content-Type': 'application/json' });
-    const options = new RequestOptions({ headers: headers });
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    const options = { headers: headers };
     this.user = null;
     return this.http.get(this._signoutURL, options)
-      .map(res => this.message = res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
-  private handleError(error: Response) {
-    console.error(error);
-    return Observable.throw(error.json().message || 'Server error');
+  private handleError(error: HttpErrorResponse) {
+    console.error(error.error.message);
+    return throwError(error.error.message || 'Server error');
   }
 }

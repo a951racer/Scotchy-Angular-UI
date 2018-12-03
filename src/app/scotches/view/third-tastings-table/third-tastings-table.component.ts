@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ConfirmDialogService } from '../../../../assets/partials/confirm-dialog/confirm-dialog.service';
 import { EditDialogService } from '../../../../assets/partials/edit-dialog/edit-dialog.service';
 import { ScotchesService } from '../../scotches.service';

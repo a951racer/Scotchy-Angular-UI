@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { ScotchesService } from './scotches.service';
 
 @Component({

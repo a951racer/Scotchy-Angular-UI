@@ -1,50 +1,46 @@
-import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+// import 'rxjs/Rx';
 
 import {Injectable} from '@angular/core';
-import {Http, Headers, Request, RequestMethod, Response} from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
 import { apiConfig } from '../api.config';
 
 @Injectable()
 export class ScotchesService {
   private _baseURL = apiConfig.scotchesURL;
-  constructor (private _http: Http) {}
+  constructor (private _http: HttpClient) {}
 
 /*** Scotch stuff ********************************/
 
   create(scotch: any): Observable<any> {
     return this._http
       .post(this._baseURL, scotch)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   read(scotchId: string): Observable<any> {
     return this._http
       .get(`${this._baseURL}/${scotchId}`)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   update(scotch: any): Observable<any> {
     return this._http
       .put(`${this._baseURL}/${scotch._id}`, scotch)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   delete(scotchId: any): Observable<any> {
     return this._http
       .delete(`${this._baseURL}/${scotchId}`)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   list(): Observable<any> {
     return this._http
       .get(this._baseURL)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
 /*** Note stuff  ******************************/
@@ -52,22 +48,19 @@ export class ScotchesService {
   addNote(scotchId: string, note: any): Observable<any> {
     return this._http
       .post(`${this._baseURL}/notes/${scotchId}`, note)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   updateNote(scotchId: string, note: any): Observable<any> {
     return this._http
       .put(`${this._baseURL}/notes/${scotchId}`, note)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   deleteNote(scotchId: string, note: any): Observable<any> {
     return this._http
       .delete(`${this._baseURL}/notes/${scotchId}`, note)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
 /*** Tasting Stuff *********************************************/
@@ -75,22 +68,19 @@ export class ScotchesService {
   addTasting(scotchId: string, tasting: any): Observable<any> {
     return this._http
       .post(`${this._baseURL}/tastings/${scotchId}`, tasting)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   updateTasting(scotchId: string, tasting: any): Observable<any> {
     return this._http
       .put(`${this._baseURL}/tastings/${scotchId}`, tasting)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   deleteTasting(scotchId: string, tasting: any): Observable<any> {
     return this._http
       .delete(`${this._baseURL}/tastings/${scotchId}`, tasting)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
 /*** Wishlist stuff **************************************/
@@ -98,8 +88,7 @@ export class ScotchesService {
   addWishlist(scotchId: string, wishlist: any): Observable<any> {
     return this._http
       .post(`${this._baseURL}/wishlists/${scotchId}`, wishlist)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   deleteWishlist(scotchId: string, wishListName: any): Observable<any> {
@@ -107,8 +96,7 @@ export class ScotchesService {
     wishlist['wishListName'] = wishListName;
     return this._http
       .delete(`${this._baseURL}/wishlists/${scotchId}`, wishlist)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
 /*** Price Stuff *********************************************/
@@ -116,27 +104,24 @@ export class ScotchesService {
   addPrice(scotchId: string, price: any): Observable<any> {
     return this._http
       .post(`${this._baseURL}/prices/${scotchId}`, price)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   updatePrice(scotchId: string, price: any): Observable<any> {
     return this._http
       .put(`${this._baseURL}/prices/${scotchId}`, price)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   deletePrice(scotchId: string, price: any): Observable<any> {
     return this._http
       .delete(`${this._baseURL}/prices/${scotchId}`, price)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
 /***  Error Handling **************************************/
 
-  private handleError(error: Response) {
-    return Observable.throw(error.json().message || 'Server error');
+  private handleError(error: HttpErrorResponse) {
+    return throwError(error.error.message || 'Server error');
   }
 }

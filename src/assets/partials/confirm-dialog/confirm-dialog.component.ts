@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 
 import { ConfirmDialogService } from './confirm-dialog.service';
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-confirm-dialog',
