@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { AuthenticationService } from '../authentication/authentication.service';
 import { EditDialogService } from '../../assets/partials/edit-dialog/edit-dialog.service';
 import { ConfirmDialogService } from '../../assets/partials/confirm-dialog/confirm-dialog.service';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',

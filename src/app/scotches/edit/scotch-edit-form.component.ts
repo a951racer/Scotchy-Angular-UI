@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, Input } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { StylesService } from '../../lookup/styles.service';
 import { RegionsService } from '../../lookup/regions.service';
 

@@ -1,62 +1,57 @@
-import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+// import 'rxjs/Rx';
 
 import {Injectable} from '@angular/core';
-import {Http, Headers, Request, RequestMethod, Response} from '@angular/http';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { catchError, } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
 import { apiConfig } from '../api.config';
 
 @Injectable()
 export class StylesService {
   private _baseURL = apiConfig.stylesURL;
-  constructor (private _http: Http) {}
+  constructor (private _http: HttpClient) {}
 
 /*** Style stuff ********************************/
 
   create(style: any): Observable<any> {
     return this._http
       .post(this._baseURL, style)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   read(styleId: string): Observable<any> {
     return this._http
       .get(`${this._baseURL}/${styleId}`)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   update(style: any): Observable<any> {
     return this._http
       .put(`${this._baseURL}/${style._id}`, style)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
     }
 
   delete(styleId: any): Observable<any> {
     return this._http
       .delete(`${this._baseURL}/${styleId}`)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   list(): Observable<any> {
     return this._http
       .get(this._baseURL)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   getStyleId(style: string): Observable<any> {
     return this._http
       .get(`${this._baseURL}/byName/${style}`)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
 /***  Error Handling **************************************/
 
-  private handleError(error: Response) {
-    return Observable.throw(error.json().message || 'Server error');
+  private handleError(error: HttpErrorResponse) {
+    return throwError(error.error.message || 'Server error');
   }
 }

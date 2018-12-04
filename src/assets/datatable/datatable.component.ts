@@ -1,5 +1,5 @@
-import {Http, Response} from '@angular/http';
-import {Injectable, Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
+// import {Http, Response} from '@angular/http';
+import {Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from '@angular/core';
 import {ColumnComponent} from './column.component';
 
 @Component({

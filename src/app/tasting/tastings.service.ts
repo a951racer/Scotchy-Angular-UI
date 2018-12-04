@@ -1,14 +1,15 @@
-import 'rxjs/Rx';
-import {Observable} from 'rxjs/Observable';
+// import 'rxjs/Rx';
 
 import {Injectable} from '@angular/core';
-import {Http, Headers, Request, RequestMethod, Response} from '@angular/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { catchError, } from 'rxjs/operators';
+import { Observable, throwError  } from 'rxjs';
 import { apiConfig } from '../api.config';
 
 @Injectable()
 export class TastingsService {
   private _baseURL = apiConfig.tastingsURL;
-  constructor (private _http: Http) {}
+  constructor (private _http: HttpClient) {}
 
 /*** Tasting stuff ********************************/
 
@@ -44,8 +45,7 @@ export class TastingsService {
   list(): Observable<any> {
     return this._http
       .get(this._baseURL)
-      .map((res: Response) => res.json())
-      .catch(this.handleError);
+      .pipe(catchError(this.handleError));
   }
 
   /*
@@ -58,7 +58,7 @@ export class TastingsService {
 */
 /***  Error Handling **************************************/
 
-  private handleError(error: Response) {
-    return Observable.throw(error.json().message || 'Server error');
+  private handleError(error: HttpErrorResponse) {
+    return throwError(error.error.message || 'Server error');
   }
 }

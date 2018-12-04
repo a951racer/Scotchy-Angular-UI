@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TastingsService } from '../tastings.service';
 import { ConfirmDialogService } from '../../../assets/partials/confirm-dialog/confirm-dialog.service';

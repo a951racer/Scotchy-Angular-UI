@@ -1,9 +1,8 @@
 import { Injectable, Input } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
+import { Subject } from 'rxjs';
 
 @Injectable()
 export class EditDialogService {
-  
   // Observable string sources
   private dialogLaunchSource = new Subject<any>();
   private dialogResponseSource = new Subject<any>();
