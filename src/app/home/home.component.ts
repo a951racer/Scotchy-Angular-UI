@@ -33,6 +33,9 @@ export class HomeComponent {
               this._authenticationService.signin(this.user).subscribe(
                 result  => {
                               this.authenticated = true;
+                              this.user = result;
+                              console.log(this.authenticated);
+                              console.log(this.user);
                               this._router.navigate(['/scotches']);
                             },
                 error => {
