@@ -1,0 +1,40 @@
+.textColumn {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 165px;
+}
+
+.dateColumn {
+  width: 90px;
+}
+
+.numericColumn {
+  text-align: right;
+}
+
+.hiddenData {
+  display: none;
+}
+
+.filterRow {
+  background-color: darkolivegreen;
+}
+
+.checkboxColumn {
+  text-align: center;
+}
+
+.ratingColumn {
+  text-align: center;
+  width: 90px;
+}
+
+.openColumn {
+  text-align: center;
+  width: 40px;
+}
+
+.editColumn {
+  width: 150px;
+}
